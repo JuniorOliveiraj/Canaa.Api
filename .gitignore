@@ -65,3 +65,5 @@ Canaa/appsettings.json
 /Canaa.Infra.ExternalServices/bin/Debug/net9.0/Canaa.Infra.ExternalServices.pdb
 /Canaa.Infra.ExternalServices/obj/Debug/net9.0/Canaa.Infra.ExternalServices.dll
 /Canaa.Infra.ExternalServices/obj/Debug/net9.0/Canaa.Infra.ExternalServices.pdb
+/Canaa/appsettings.json
+/Canaa.Infra.ExternalServices/appsettings.json
