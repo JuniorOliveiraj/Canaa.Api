@@ -1,0 +1,11 @@
+D:\FLUTTER\PROJETOS\API.Canaa\Canaa.DataContracts\bin\Release\net9.0\Canaa.DataContracts.deps.json
+D:\FLUTTER\PROJETOS\API.Canaa\Canaa.DataContracts\bin\Release\net9.0\Canaa.DataContracts.dll
+D:\FLUTTER\PROJETOS\API.Canaa\Canaa.DataContracts\bin\Release\net9.0\Canaa.DataContracts.pdb
+D:\FLUTTER\PROJETOS\API.Canaa\Canaa.DataContracts\obj\Release\net9.0\Canaa.DataContracts.GeneratedMSBuildEditorConfig.editorconfig
+D:\FLUTTER\PROJETOS\API.Canaa\Canaa.DataContracts\obj\Release\net9.0\Canaa.DataContracts.AssemblyInfoInputs.cache
+D:\FLUTTER\PROJETOS\API.Canaa\Canaa.DataContracts\obj\Release\net9.0\Canaa.DataContracts.AssemblyInfo.cs
+D:\FLUTTER\PROJETOS\API.Canaa\Canaa.DataContracts\obj\Release\net9.0\Canaa.DataContracts.csproj.CoreCompileInputs.cache
+D:\FLUTTER\PROJETOS\API.Canaa\Canaa.DataContracts\obj\Release\net9.0\Canaa.DataContracts.dll
+D:\FLUTTER\PROJETOS\API.Canaa\Canaa.DataContracts\obj\Release\net9.0\refint\Canaa.DataContracts.dll
+D:\FLUTTER\PROJETOS\API.Canaa\Canaa.DataContracts\obj\Release\net9.0\Canaa.DataContracts.pdb
+D:\FLUTTER\PROJETOS\API.Canaa\Canaa.DataContracts\obj\Release\net9.0\ref\Canaa.DataContracts.dll

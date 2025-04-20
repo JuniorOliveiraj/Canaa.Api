@@ -1,0 +1,98 @@
+[
+  {
+    "ContainingType": "SuaAppNamespace.Controllers.HelloController",
+    "Method": "HoraAtual",
+    "RelativePath": "api/Hello/hora",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SuaAppNamespace.Controllers.HelloController",
+    "Method": "Saudacao",
+    "RelativePath": "api/Hello/saudacao",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthController",
+    "Method": "Private",
+    "RelativePath": "v1/Auth/private",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthController",
+    "Method": "GetUser",
+    "RelativePath": "v1/Auth/public",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthController",
+    "Method": "GetUser2",
+    "RelativePath": "v1/Auth/public/teste2",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Canaa.AppHost.Financas.GetGastos.GastosController",
+    "Method": "Saudacao",
+    "RelativePath": "v1/Gastos/saudacao",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Canaa.Auth.Login",
+    "Method": "LoginJwt",
+    "RelativePath": "v1/Login/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "param",
+        "Type": "Canaa.Auth.Login\u002BParamUser",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Canaa.Financas.GetGastos.Total",
+    "Method": "Gastos",
+    "RelativePath": "v1/Total",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Canaa.Financas.GetGastos.Total",
+    "Method": "Gastos",
+    "RelativePath": "v1/Total/Gastos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

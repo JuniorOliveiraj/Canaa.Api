@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Auth\IUsuarioLogadoMetodo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Canaa.DataContracts\Canaa.DataContracts.csproj" />
+    <ProjectReference Include="..\Canaa.Infra.ExternalServices\Canaa.Infra.ExternalServices.csproj" />
+  </ItemGroup>
+
+</Project>

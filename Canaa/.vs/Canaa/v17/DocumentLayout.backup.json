@@ -1,0 +1,508 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4A1692BF-4F29-43C3-B40A-F56B19092832}|..\\Canaa.FN.BusinessComponents\\Canaa.FN.BusinessComponents.csproj|d:\\flutter\\projetos\\api.canaa\\canaa.fn.businesscomponents\\auth\\usuariologadometodo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14E05AA2-22DB-401A-878D-4491D0D1AC7C}|..\\Canaa.Infra.ExternalServices\\Canaa.Infra.ExternalServices.csproj|d:\\flutter\\projetos\\api.canaa\\canaa.infra.externalservices\\query\\query.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14E05AA2-22DB-401A-878D-4491D0D1AC7C}|..\\Canaa.Infra.ExternalServices\\Canaa.Infra.ExternalServices.csproj|d:\\flutter\\projetos\\api.canaa\\canaa.infra.externalservices\\query\\queryfunciotosq\\todasfuncoesquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14E05AA2-22DB-401A-878D-4491D0D1AC7C}|..\\Canaa.Infra.ExternalServices\\Canaa.Infra.ExternalServices.csproj|d:\\flutter\\projetos\\api.canaa\\canaa.infra.externalservices\\query\\queryfunciotosq\\itodasfuncoesquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0DFDA040-D893-D355-01A2-4EEF96DA6784}|Canaa.csproj|d:\\flutter\\projetos\\api.canaa\\canaa\\ninject\\ninjectbindings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0DFDA040-D893-D355-01A2-4EEF96DA6784}|Canaa.csproj|solutionrelative:ninject\\ninjectbindings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC79DC17-A97A-4BBD-830C-4A83406D9852}|..\\Canaa.DataContracts\\Canaa.DataContracts.csproj|d:\\flutter\\projetos\\api.canaa\\canaa.datacontracts\\auth\\iauthcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0DFDA040-D893-D355-01A2-4EEF96DA6784}|Canaa.csproj|d:\\flutter\\projetos\\api.canaa\\canaa\\controllerexamples\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0DFDA040-D893-D355-01A2-4EEF96DA6784}|Canaa.csproj|solutionrelative:controllerexamples\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A1692BF-4F29-43C3-B40A-F56B19092832}|..\\Canaa.FN.BusinessComponents\\Canaa.FN.BusinessComponents.csproj|d:\\flutter\\projetos\\api.canaa\\canaa.fn.businesscomponents\\auth\\iusuariologadometodo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC79DC17-A97A-4BBD-830C-4A83406D9852}|..\\Canaa.DataContracts\\Canaa.DataContracts.csproj|d:\\flutter\\projetos\\api.canaa\\canaa.datacontracts\\auth\\usuariologado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A1692BF-4F29-43C3-B40A-F56B19092832}|..\\Canaa.FN.BusinessComponents\\Canaa.FN.BusinessComponents.csproj|d:\\flutter\\projetos\\api.canaa\\canaa.fn.businesscomponents\\auth\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14E05AA2-22DB-401A-878D-4491D0D1AC7C}|..\\Canaa.Infra.ExternalServices\\Canaa.Infra.ExternalServices.csproj|d:\\flutter\\projetos\\api.canaa\\canaa.infra.externalservices\\query\\queryfunctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14E05AA2-22DB-401A-878D-4491D0D1AC7C}|..\\Canaa.Infra.ExternalServices\\Canaa.Infra.ExternalServices.csproj|d:\\flutter\\projetos\\api.canaa\\canaa.infra.externalservices\\dependency\\ninjectbindingsinfra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0DFDA040-D893-D355-01A2-4EEF96DA6784}|Canaa.csproj|d:\\flutter\\projetos\\api.canaa\\canaa\\auth\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0DFDA040-D893-D355-01A2-4EEF96DA6784}|Canaa.csproj|solutionrelative:auth\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0DFDA040-D893-D355-01A2-4EEF96DA6784}|Canaa.csproj|d:\\flutter\\projetos\\api.canaa\\canaa\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0DFDA040-D893-D355-01A2-4EEF96DA6784}|Canaa.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0DFDA040-D893-D355-01A2-4EEF96DA6784}|Canaa.csproj|d:\\flutter\\projetos\\api.canaa\\canaa\\financas\\getgastos\\total.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0DFDA040-D893-D355-01A2-4EEF96DA6784}|Canaa.csproj|solutionrelative:financas\\getgastos\\total.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14E05AA2-22DB-401A-878D-4491D0D1AC7C}|..\\Canaa.Infra.ExternalServices\\Canaa.Infra.ExternalServices.csproj|d:\\flutter\\projetos\\api.canaa\\canaa.infra.externalservices\\query\\queryfunciotosq\\usuarioquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14E05AA2-22DB-401A-878D-4491D0D1AC7C}|..\\Canaa.Infra.ExternalServices\\Canaa.Infra.ExternalServices.csproj|d:\\flutter\\projetos\\api.canaa\\canaa.infra.externalservices\\context\\usercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC79DC17-A97A-4BBD-830C-4A83406D9852}|..\\Canaa.DataContracts\\Canaa.DataContracts.csproj|d:\\flutter\\projetos\\api.canaa\\canaa.datacontracts\\auth\\iusercontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14E05AA2-22DB-401A-878D-4491D0D1AC7C}|..\\Canaa.Infra.ExternalServices\\Canaa.Infra.ExternalServices.csproj|d:\\flutter\\projetos\\api.canaa\\canaa.infra.externalservices\\canaa.infra.externalservices.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14E05AA2-22DB-401A-878D-4491D0D1AC7C}|..\\Canaa.Infra.ExternalServices\\Canaa.Infra.ExternalServices.csproj|d:\\flutter\\projetos\\api.canaa\\canaa.infra.externalservices\\entitiesconfiguration\\usuarioconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14E05AA2-22DB-401A-878D-4491D0D1AC7C}|..\\Canaa.Infra.ExternalServices\\Canaa.Infra.ExternalServices.csproj|d:\\flutter\\projetos\\api.canaa\\canaa.infra.externalservices\\context\\iauthcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC79DC17-A97A-4BBD-830C-4A83406D9852}|..\\Canaa.DataContracts\\Canaa.DataContracts.csproj|d:\\flutter\\projetos\\api.canaa\\canaa.datacontracts\\auth\\userlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0DFDA040-D893-D355-01A2-4EEF96DA6784}|Canaa.csproj|d:\\flutter\\projetos\\api.canaa\\canaa\\configs\\jwtconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0DFDA040-D893-D355-01A2-4EEF96DA6784}|Canaa.csproj|solutionrelative:configs\\jwtconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0DFDA040-D893-D355-01A2-4EEF96DA6784}|Canaa.csproj|d:\\flutter\\projetos\\api.canaa\\canaa\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{0DFDA040-D893-D355-01A2-4EEF96DA6784}|Canaa.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14E05AA2-22DB-401A-878D-4491D0D1AC7C}|..\\Canaa.Infra.ExternalServices\\Canaa.Infra.ExternalServices.csproj|d:\\flutter\\projetos\\api.canaa\\canaa.infra.externalservices\\entitiesconfiguration\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\FLUTTER\\API.Canaa\\Canaa.FN.BusinessComponents\\Buscar\\Gastos\\TotalGastos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0DFDA040-D893-D355-01A2-4EEF96DA6784}|Canaa.csproj|d:\\flutter\\projetos\\api.canaa\\canaa\\financas\\getgastos\\pegargastos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0DFDA040-D893-D355-01A2-4EEF96DA6784}|Canaa.csproj|solutionrelative:financas\\getgastos\\pegargastos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\FLUTTER\\API.Canaa\\Canaa.FN.BusinessComponents\\Canaa.FN.BusinessComponents.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\FLUTTER\\API.Canaa\\Canaa.FN.BusinessComponents\\Buscar\\Gastos\\ITotalGastos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\FLUTTER\\API.Canaa\\Canaa.FN.BusinessComponents\\Class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IAuthContext.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.DataContracts\\Auth\\IAuthContext.cs",
+              "RelativeDocumentMoniker": "..\\Canaa.DataContracts\\Auth\\IAuthContext.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.DataContracts\\Auth\\IAuthContext.cs",
+              "RelativeToolTip": "..\\Canaa.DataContracts\\Auth\\IAuthContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T21:05:14.381Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IUsuarioLogadoMetodo.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.FN.BusinessComponents\\Auth\\IUsuarioLogadoMetodo.cs",
+              "RelativeDocumentMoniker": "..\\Canaa.FN.BusinessComponents\\Auth\\IUsuarioLogadoMetodo.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.FN.BusinessComponents\\Auth\\IUsuarioLogadoMetodo.cs",
+              "RelativeToolTip": "..\\Canaa.FN.BusinessComponents\\Auth\\IUsuarioLogadoMetodo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAYAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T20:59:11.699Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UsuarioLogadoMetodo.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.FN.BusinessComponents\\Auth\\UsuarioLogadoMetodo.cs",
+              "RelativeDocumentMoniker": "..\\Canaa.FN.BusinessComponents\\Auth\\UsuarioLogadoMetodo.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.FN.BusinessComponents\\Auth\\UsuarioLogadoMetodo.cs",
+              "RelativeToolTip": "..\\Canaa.FN.BusinessComponents\\Auth\\UsuarioLogadoMetodo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBUAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T20:58:33.634Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa\\ControllerExamples\\AuthController.cs",
+              "RelativeDocumentMoniker": "ControllerExamples\\AuthController.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa\\ControllerExamples\\AuthController.cs",
+              "RelativeToolTip": "ControllerExamples\\AuthController.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAYwEkAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T22:23:17.496Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Query.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\Query\\Query.cs",
+              "RelativeDocumentMoniker": "..\\Canaa.Infra.ExternalServices\\Query\\Query.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\Query\\Query.cs",
+              "RelativeToolTip": "..\\Canaa.Infra.ExternalServices\\Query\\Query.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAowEcAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T15:01:34.598Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ITodasFuncoesQuery.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\Query\\QueryFunciotosQ\\ITodasFuncoesQuery.cs",
+              "RelativeDocumentMoniker": "..\\Canaa.Infra.ExternalServices\\Query\\QueryFunciotosQ\\ITodasFuncoesQuery.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\Query\\QueryFunciotosQ\\ITodasFuncoesQuery.cs",
+              "RelativeToolTip": "..\\Canaa.Infra.ExternalServices\\Query\\QueryFunciotosQ\\ITodasFuncoesQuery.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAQAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T15:30:44.453Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TodasFuncoesQuery.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\Query\\QueryFunciotosQ\\TodasFuncoesQuery.cs",
+              "RelativeDocumentMoniker": "..\\Canaa.Infra.ExternalServices\\Query\\QueryFunciotosQ\\TodasFuncoesQuery.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\Query\\QueryFunciotosQ\\TodasFuncoesQuery.cs",
+              "RelativeToolTip": "..\\Canaa.Infra.ExternalServices\\Query\\QueryFunciotosQ\\TodasFuncoesQuery.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCQAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T15:09:47.848Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NinjectBindings.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa\\Ninject\\NinjectBindings.cs",
+              "RelativeDocumentMoniker": "Ninject\\NinjectBindings.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa\\Ninject\\NinjectBindings.cs",
+              "RelativeToolTip": "Ninject\\NinjectBindings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T21:09:33.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UsuarioLogado.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.DataContracts\\Auth\\UsuarioLogado.cs",
+              "RelativeDocumentMoniker": "..\\Canaa.DataContracts\\Auth\\UsuarioLogado.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.DataContracts\\Auth\\UsuarioLogado.cs",
+              "RelativeToolTip": "..\\Canaa.DataContracts\\Auth\\UsuarioLogado.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBQAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T14:24:48.568Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Login.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa\\Auth\\Login.cs",
+              "RelativeDocumentMoniker": "Auth\\Login.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa\\Auth\\Login.cs",
+              "RelativeToolTip": "Auth\\Login.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T14:13:57.867Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "UserContext.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\Context\\UserContext.cs",
+              "RelativeDocumentMoniker": "..\\Canaa.Infra.ExternalServices\\Context\\UserContext.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\Context\\UserContext.cs",
+              "RelativeToolTip": "..\\Canaa.Infra.ExternalServices\\Context\\UserContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T15:05:57.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Total.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa\\Financas\\GetGastos\\Total.cs",
+              "RelativeDocumentMoniker": "Financas\\GetGastos\\Total.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa\\Financas\\GetGastos\\Total.cs",
+              "RelativeToolTip": "Financas\\GetGastos\\Total.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T21:25:37.714Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Login.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.FN.BusinessComponents\\Auth\\Login.cs",
+              "RelativeDocumentMoniker": "..\\Canaa.FN.BusinessComponents\\Auth\\Login.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.FN.BusinessComponents\\Auth\\Login.cs",
+              "RelativeToolTip": "..\\Canaa.FN.BusinessComponents\\Auth\\Login.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABoAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T22:24:55.078Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "QueryFunctions.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\Query\\QueryFunctions.cs",
+              "RelativeDocumentMoniker": "..\\Canaa.Infra.ExternalServices\\Query\\QueryFunctions.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\Query\\QueryFunctions.cs",
+              "RelativeToolTip": "..\\Canaa.Infra.ExternalServices\\Query\\QueryFunctions.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAswBkAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T23:15:32.759Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAACsAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T14:59:55.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "NinjectBindingsInfra.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\Dependency\\NinjectBindingsInfra.cs",
+              "RelativeDocumentMoniker": "..\\Canaa.Infra.ExternalServices\\Dependency\\NinjectBindingsInfra.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\Dependency\\NinjectBindingsInfra.cs",
+              "RelativeToolTip": "..\\Canaa.Infra.ExternalServices\\Dependency\\NinjectBindingsInfra.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T15:43:03.293Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "IUserContext.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.DataContracts\\Auth\\IUserContext.cs",
+              "RelativeDocumentMoniker": "..\\Canaa.DataContracts\\Auth\\IUserContext.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.DataContracts\\Auth\\IUserContext.cs",
+              "RelativeToolTip": "..\\Canaa.DataContracts\\Auth\\IUserContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T14:39:28.699Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "UsuarioQuery.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\Query\\QueryFunciotosQ\\UsuarioQuery.cs",
+              "RelativeDocumentMoniker": "..\\Canaa.Infra.ExternalServices\\Query\\QueryFunciotosQ\\UsuarioQuery.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\Query\\QueryFunciotosQ\\UsuarioQuery.cs",
+              "RelativeToolTip": "..\\Canaa.Infra.ExternalServices\\Query\\QueryFunciotosQ\\UsuarioQuery.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T14:54:54.8Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Canaa.Infra.ExternalServices.csproj",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\Canaa.Infra.ExternalServices.csproj",
+              "RelativeDocumentMoniker": "..\\Canaa.Infra.ExternalServices\\Canaa.Infra.ExternalServices.csproj",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\Canaa.Infra.ExternalServices.csproj",
+              "RelativeToolTip": "..\\Canaa.Infra.ExternalServices\\Canaa.Infra.ExternalServices.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-15T23:49:01.736Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "UsuarioConfiguration.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\EntitiesConfiguration\\UsuarioConfiguration.cs",
+              "RelativeDocumentMoniker": "..\\Canaa.Infra.ExternalServices\\EntitiesConfiguration\\UsuarioConfiguration.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\EntitiesConfiguration\\UsuarioConfiguration.cs",
+              "RelativeToolTip": "..\\Canaa.Infra.ExternalServices\\EntitiesConfiguration\\UsuarioConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T23:56:43.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "IAuthContext.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\Context\\IAuthContext.cs",
+              "RelativeDocumentMoniker": "..\\Canaa.Infra.ExternalServices\\Context\\IAuthContext.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\Context\\IAuthContext.cs",
+              "RelativeToolTip": "..\\Canaa.Infra.ExternalServices\\Context\\IAuthContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T23:13:13.771Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-13T22:24:31.985Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "UserLogin.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.DataContracts\\Auth\\UserLogin.cs",
+              "RelativeDocumentMoniker": "..\\Canaa.DataContracts\\Auth\\UserLogin.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.DataContracts\\Auth\\UserLogin.cs",
+              "RelativeToolTip": "..\\Canaa.DataContracts\\Auth\\UserLogin.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T23:43:19.167Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "JwtConfig.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa\\Configs\\JwtConfig.cs",
+              "RelativeDocumentMoniker": "Configs\\JwtConfig.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa\\Configs\\JwtConfig.cs",
+              "RelativeToolTip": "Configs\\JwtConfig.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAqwBcAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T23:04:17.919Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Startup.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\EntitiesConfiguration\\Startup.cs",
+              "RelativeDocumentMoniker": "..\\Canaa.Infra.ExternalServices\\EntitiesConfiguration\\Startup.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa.Infra.ExternalServices\\EntitiesConfiguration\\Startup.cs",
+              "RelativeToolTip": "..\\Canaa.Infra.ExternalServices\\EntitiesConfiguration\\Startup.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T22:56:30.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ITotalGastos.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\API.Canaa\\Canaa.FN.BusinessComponents\\Buscar\\Gastos\\ITotalGastos.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\API.Canaa\\Canaa.FN.BusinessComponents\\Buscar\\Gastos\\ITotalGastos.cs",
+              "ToolTip": "D:\\FLUTTER\\API.Canaa\\Canaa.FN.BusinessComponents\\Buscar\\Gastos\\ITotalGastos.cs",
+              "RelativeToolTip": "..\\..\\..\\API.Canaa\\Canaa.FN.BusinessComponents\\Buscar\\Gastos\\ITotalGastos.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T22:15:28.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "TotalGastos.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\API.Canaa\\Canaa.FN.BusinessComponents\\Buscar\\Gastos\\TotalGastos.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\API.Canaa\\Canaa.FN.BusinessComponents\\Buscar\\Gastos\\TotalGastos.cs",
+              "ToolTip": "D:\\FLUTTER\\API.Canaa\\Canaa.FN.BusinessComponents\\Buscar\\Gastos\\TotalGastos.cs",
+              "RelativeToolTip": "..\\..\\..\\API.Canaa\\Canaa.FN.BusinessComponents\\Buscar\\Gastos\\TotalGastos.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T22:16:49.819Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Canaa.FN.BusinessComponents.csproj",
+              "DocumentMoniker": "D:\\FLUTTER\\API.Canaa\\Canaa.FN.BusinessComponents\\Canaa.FN.BusinessComponents.csproj",
+              "RelativeDocumentMoniker": "..\\..\\..\\API.Canaa\\Canaa.FN.BusinessComponents\\Canaa.FN.BusinessComponents.csproj",
+              "ToolTip": "D:\\FLUTTER\\API.Canaa\\Canaa.FN.BusinessComponents\\Canaa.FN.BusinessComponents.csproj",
+              "RelativeToolTip": "..\\..\\..\\API.Canaa\\Canaa.FN.BusinessComponents\\Canaa.FN.BusinessComponents.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-15T01:47:42.996Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\API.Canaa\\Canaa.FN.BusinessComponents\\Class1.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\API.Canaa\\Canaa.FN.BusinessComponents\\Class1.cs",
+              "ToolTip": "D:\\FLUTTER\\API.Canaa\\Canaa.FN.BusinessComponents\\Class1.cs",
+              "RelativeToolTip": "..\\..\\..\\API.Canaa\\Canaa.FN.BusinessComponents\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T22:14:08.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "PegarGastos.cs",
+              "DocumentMoniker": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa\\Financas\\GetGastos\\PegarGastos.cs",
+              "RelativeDocumentMoniker": "Financas\\GetGastos\\PegarGastos.cs",
+              "ToolTip": "D:\\FLUTTER\\PROJETOS\\API.Canaa\\Canaa\\Financas\\GetGastos\\PegarGastos.cs",
+              "RelativeToolTip": "Financas\\GetGastos\\PegarGastos.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAIwBAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T21:49:17.914Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
