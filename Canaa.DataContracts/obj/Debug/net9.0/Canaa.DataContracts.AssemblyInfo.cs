@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Canaa.DataContracts")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+47a6628bd869840a9f92c84078d11cf44665e497")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cfb2c04e70e6f00db6c83e2155b9c2a199613043")]
 [assembly: System.Reflection.AssemblyProductAttribute("Canaa.DataContracts")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Canaa.DataContracts")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
