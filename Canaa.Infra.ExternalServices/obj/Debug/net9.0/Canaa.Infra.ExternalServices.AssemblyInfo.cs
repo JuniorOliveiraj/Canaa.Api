@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Canaa.Infra.ExternalServices")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cfb2c04e70e6f00db6c83e2155b9c2a199613043")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+266b97c8f63467ca9056a1ab9900d220a0ff627f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Canaa.Infra.ExternalServices")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Canaa.Infra.ExternalServices")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
