@@ -50,7 +50,7 @@ bash
 Copiar
 Editar
 # 1. Clone o repositório
-git clone https://github.com/seu-usuario/nome-do-repositorio.git
+git clone [https://github.com/seu-usuario/nome-do-repositorio.git](https://github.com/JuniorOliveiraj/Canaa.Api.git)
 
 # 2. Acesse o diretório
 cd nome-do-repositorio
