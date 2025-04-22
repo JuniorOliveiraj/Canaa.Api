@@ -7,14 +7,14 @@ namespace Canaa.FN.BusinessComponents.Auth
     {
         public UsuarioLogado Usuario()
         {
-            var query = new  Query(@"SELECT  displayName, email FROM users WHERE ID = @USUARIO");
+            var query = new  Query(@"SELECT  NOME, EMAIL FROM Z_USUARIOS WHERE ID = @USUARIO");
 
             var senha =  query.Execute().FirstOrDefault();
 
             return new UsuarioLogado
             {
-                Email = senha["displayName"].ToString(),
-                Senha = senha["email"].ToString(),
+                Email = senha["NOME"].ToString(),
+                Senha = senha["EMAIL"].ToString(),
             };
         }
 

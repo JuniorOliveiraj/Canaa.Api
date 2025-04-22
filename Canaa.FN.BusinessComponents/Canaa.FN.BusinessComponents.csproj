@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Auth\IUsuarioLogadoMetodo.cs" />
+    <ProjectReference Include="..\Canaa.DataContracts\Canaa.DataContracts.csproj" />
+    <ProjectReference Include="..\Canaa.Infra.ExternalServices\Canaa.Infra.ExternalServices.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Canaa.DataContracts\Canaa.DataContracts.csproj" />
-    <ProjectReference Include="..\Canaa.Infra.ExternalServices\Canaa.Infra.ExternalServices.csproj" />
+    <Folder Include="WhatsApp\" />
   </ItemGroup>
 
 </Project>

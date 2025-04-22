@@ -1,5 +1,4 @@
-﻿
-using Canaa.DataContracts.Auth;
+﻿using Canaa.DataContracts.Auth.Context;
 using Canaa.Infra.ExternalServices.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;

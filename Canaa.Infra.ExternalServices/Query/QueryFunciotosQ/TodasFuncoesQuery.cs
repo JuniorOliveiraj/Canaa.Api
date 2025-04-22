@@ -1,4 +1,4 @@
-﻿using Canaa.DataContracts.Auth;
+﻿using Canaa.DataContracts.Auth.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;

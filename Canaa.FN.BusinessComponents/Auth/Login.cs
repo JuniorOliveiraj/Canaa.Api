@@ -11,7 +11,7 @@ namespace Canaa.FN.BusinessComponents.Auth
     {
         public UserLogin FazerLogin(UserLogin userLogin)
         {
-            var query = new Query(@"SELECT ID FROM users WHERE EMAIL = :EMAIL AND PASSWORD = :SENHA");
+            var query = new Query(@"SELECT ID FROM Z_USUARIOS WHERE EMAIL = :EMAIL AND SENHA = :SENHA");
             query.AddParameter(new Parameter("EMAIL", userLogin.Email));
             query.AddParameter(new Parameter("SENHA", userLogin.Senha));
 

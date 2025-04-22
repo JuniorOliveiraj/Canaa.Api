@@ -2,6 +2,7 @@
 using Ninject;
 using Canaa.FN.BusinessComponents.Buscar.Gastos;
 using Canaa.FN.BusinessComponents.Auth;
+ 
 
 namespace Canaa.Ninject
 {
@@ -12,6 +13,8 @@ namespace Canaa.Ninject
             // Aqui você faz todos os seus bindings
             // Exemplo:
             // kernel.Bind<IMeuServico>().To<MeuServico>();
+           
+            kernel.Bind<ICriarConta>().To<CriarConta>();
             kernel.Bind<ILogin>().To<Login>();
             kernel.Bind<ITotalGastos>().To<TotalGastos>();
             kernel.Bind<IUsuarioLogadoMetodo>().To<UsuarioLogadoMetodo>();
@@ -22,7 +25,8 @@ namespace Canaa.Ninject
                     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
                 return configBuilder.Build();
-            }).InSingletonScope(); 
+            }).InSingletonScope();
+
 
 
         }

@@ -1,4 +1,4 @@
-﻿using Canaa.DataContracts.Auth;
+﻿using Canaa.DataContracts.Auth.Context;
 using Canaa.Infra.ExternalServices.Context;
 using Canaa.Infra.ExternalServices.Query.QueryFunciotosQ;
 using Microsoft.AspNetCore.Http;
@@ -21,7 +21,16 @@ namespace Canaa.Infra.ExternalServices.Dependency
                     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
                 return configBuilder.Build();
-            }).InSingletonScope(); // singleton para evitar múltiplas leituras
+            }).InSingletonScope();
+
+
+            kernel.Bind<IConfiguration>().ToMethod(ctx =>
+            {
+                return new ConfigurationBuilder()
+                    .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                    .Build();
+            }).InSingletonScope();
 
         }
     }

@@ -6,8 +6,9 @@ using Ninject;
 
 using Canaa.Ninject;
 using Canaa.Infra.ExternalServices.Context;
-using Canaa.DataContracts.Auth;
 using Canaa.Infra.ExternalServices.Dependency;
+using Canaa.DataContracts.Auth.Context;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,10 +17,15 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 {
     serverOptions.ListenAnyIP(5000);
 
-   /* serverOptions.ListenAnyIP(5001, listenOptions =>
-    {
-        listenOptions.UseHttps(); // Habilita HTTPS
-    });*/
+    /* serverOptions.ListenAnyIP(5001, listenOptions =>
+     {
+         listenOptions.UseHttps(); // Habilita HTTPS
+     });*/
+
+    serverOptions.Limits.MinRequestBodyDataRate = new MinDataRate(
+    bytesPerSecond: 100, 
+    gracePeriod: TimeSpan.FromSeconds(10) 
+);
 });
 // Program.cs (para .NET 6 ou superior)
 

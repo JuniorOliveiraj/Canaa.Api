@@ -9,7 +9,7 @@ namespace Canaa.FN.BusinessComponents.Buscar.Gastos
         public double Total()
         {
             var query = new Query(@"SELECT
-                SUM(valor) AS 'Total'
+                ROUND(SUM(valor), 2) AS 'Total'
                 FROM 
                     gastos_mensais_notion
                 WHERE

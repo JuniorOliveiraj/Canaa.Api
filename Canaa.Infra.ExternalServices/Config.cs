@@ -16,5 +16,19 @@ namespace Canaa.AppHost.utils
         {
             return _configuration.GetConnectionString(name);
         }
+
+
+        public static IConfigurationRoot Build()
+        {
+            return new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .Build();
+        }
+
+        public static string GetConnectionString()
+        {
+            return Build().GetConnectionString("DefaultConnection");
+        }
     }
 }

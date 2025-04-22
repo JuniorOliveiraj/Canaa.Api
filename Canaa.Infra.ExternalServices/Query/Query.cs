@@ -39,8 +39,21 @@ namespace Canaa.AppHost.utils.Query
                 using var command = new MySqlCommand(processedCommandText, connection);
                 AddParametersToCommand(command, processedParams);
 
-                using var reader = command.ExecuteReader();
-                results = ReadResults(reader);
+                if (Regex.IsMatch(processedCommandText.Trim(), @"^\s*INSERT", RegexOptions.IgnoreCase))
+                {
+                    command.ExecuteNonQuery();
+                    var insertedId = command.LastInsertedId;
+
+                    results.Add(new Dictionary<string, object>
+                    {
+                        { "ID", insertedId }
+                    });
+                }
+                else
+                {
+                    using var reader = command.ExecuteReader();
+                    results = ReadResults(reader);
+                }
             }
             catch (MySqlException ex)
             {
@@ -49,7 +62,6 @@ namespace Canaa.AppHost.utils.Query
             }
             catch (Exception ex)
             {
-
                 Console.Error.WriteLine($"Erro inesperado: {ex.Message}");
                 throw;
             }
@@ -57,15 +69,13 @@ namespace Canaa.AppHost.utils.Query
             return results;
         }
 
+
         private string ProcessCommandText(string commandText, out List<KeyValuePair<string, object>> processedParams)
         {
             // Primeiro, processa as funções tipo @NOW(), @RANDOM(), etc
             var gstosComponent = BusinessComponentInfra.CreateInstance<ITodasFuncoesQuery>();
 
             string processed = gstosComponent.RetunCommand(commandText);
-            
-
-            //  string processed = QueryFunctions.ProcessFunctions(commandText);
 
             processedParams = new();
 
