@@ -142,3 +142,8 @@ Canaa/appsettings.json
 /Canaa/Properties/PublishProfiles/FolderProfile1.pubxml.user
 /Canaa.Infra.ExternalServices/obj/Release/net9.0/Canaa.Infra.ExternalServices.csproj.FileListAbsolute.txt
 /Canaa.Infra.ExternalServices/obj/Release/net9.0/Canaa.Infra.ExternalServices.dll
+/Canaa/.vs/Canaa/DesignTimeBuild/.dtbcache.v2
+/Canaa/.vs/Canaa/v17/.futdcache.v2
+/Canaa/.vs/ProjectEvaluation/canaa.metadata.v9.bin
+*.BuildWithSkipAnalyzers
+/Canaa/.vs/ProjectEvaluation/canaa.projects.v9.bin
