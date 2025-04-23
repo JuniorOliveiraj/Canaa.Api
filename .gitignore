@@ -136,7 +136,7 @@ Canaa/appsettings.json
 /Canaa.Infra.ExternalServices/obj/Debug/net9.0/Canaa.Infra.ExternalServices.csproj.CoreCompileInputs.cache
 /Canaa.Infra.ExternalServices/obj/Release/net9.0/Canaa.Infra.ExternalServices.pdb
 /Canaa.Infra.ExternalServices/obj/Release/net9.0/Canaa.Infra.ExternalServices.csproj.AssemblyReference.cache
-*.cs
+*.dll
 /Canaa.Infra.ExternalServices/obj/Release/net9.0/Canaa.Infra.ExternalServices.csproj.CoreCompileInputs.cache
 /Canaa.DataContracts/obj/Debug/net9.0/Canaa.DataContracts.csproj.CoreCompileInputs.cache
 /Canaa/Properties/PublishProfiles/FolderProfile1.pubxml.user

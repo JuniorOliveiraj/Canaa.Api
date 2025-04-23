@@ -2,7 +2,8 @@
 using Ninject;
 using Canaa.FN.BusinessComponents.Buscar.Gastos;
 using Canaa.FN.BusinessComponents.Auth;
- 
+using Canaa.FN.BusinessComponents.Adicionar.AdicionarGastos;
+
 
 namespace Canaa.Ninject
 {
@@ -14,10 +15,16 @@ namespace Canaa.Ninject
             // Exemplo:
             // kernel.Bind<IMeuServico>().To<MeuServico>();
            
+            //Auth
             kernel.Bind<ICriarConta>().To<CriarConta>();
             kernel.Bind<ILogin>().To<Login>();
+
+            //Gastos
             kernel.Bind<ITotalGastos>().To<TotalGastos>();
             kernel.Bind<IUsuarioLogadoMetodo>().To<UsuarioLogadoMetodo>();
+            kernel.Bind<IAdicionarJsonGastosMercadoPago>().To<AdicionarJsonGastosMercadoPago>();
+
+            //Configuração
             kernel.Bind<IConfiguration>().ToMethod(ctx =>
             {
                 var configBuilder = new ConfigurationBuilder()
