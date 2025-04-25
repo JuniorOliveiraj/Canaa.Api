@@ -1,6 +1,7 @@
 ﻿
 
 using Canaa.AppHost.utils.Query;
+using Canaa.DataContracts.Gastos;
 
 namespace Canaa.FN.BusinessComponents.Buscar.Gastos
 {
@@ -14,7 +15,10 @@ namespace Canaa.FN.BusinessComponents.Buscar.Gastos
                     gastos_mensais_notion
                 WHERE
                 YEAR(data) = @ANO AND 
-                MONTH(data) = @MES");
+                MONTH(data) = @MES
+                AND STATUS <> 'Inativo'");
+           //  query.AddParameter(new Parameter("STATUS", StatusGastos.Inativo));
+
             var result = query.Execute().FirstOrDefault();
 
             if (result != null && result.ContainsKey("Total"))

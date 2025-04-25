@@ -17,6 +17,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.4" />
     <PackageReference Include="MySql.Data" Version="9.2.0" />
     <PackageReference Include="Ninject" Version="3.3.6" />
+    <PackageReference Include="YoutubeExplode" Version="6.5.4" />
   </ItemGroup>
 
   <ItemGroup>

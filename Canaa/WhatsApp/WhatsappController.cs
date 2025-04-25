@@ -16,7 +16,7 @@ namespace Canaa.WhatsApp
     [Route("v1/[controller]")]
     public class WhatsappController : ControllerBase
     {
- 
+
 
         [Authorize]
         [HttpPost("Send/mensage")]
@@ -34,8 +34,8 @@ namespace Canaa.WhatsApp
             var resultado = await WhatsAppSender.Mensage(mensagem);
 
             return Ok(new { resultado });
-        }      
-        
+        }
+
 
         [AllowAnonymous]
         [HttpPost("Send/imagemUrl")]
@@ -57,7 +57,7 @@ namespace Canaa.WhatsApp
                     mediatype = Mediatype.image,
                     caption = "Teste de envio de imagem",
                     media = base64String //"https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
-                } 
+                }
             };
 
 
@@ -76,7 +76,9 @@ namespace Canaa.WhatsApp
                 textMessage = new TextMessage
                 {
                     text = request.textMessage
-                }
+                },
+                instancia = request.instancia ?? "Bot"
+
             };
 
             var resultado = await WhatsAppSender.Mensage(mensagem);
@@ -89,6 +91,8 @@ namespace Canaa.WhatsApp
         {
             public string to { get; set; }
             public string textMessage { get; set; }
+
+            public string? instancia { get; set; }
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Canaa.Infra.ExternalServices.Whatsapp
             httpClient.DefaultRequestHeaders.Clear();
             httpClient.DefaultRequestHeaders.Add("apikey", apiKey);
 
-            var url = $"{baseUrl}/message/sendText/Bot";
+            var url = $"{baseUrl}/message/sendText/{request.instancia}";
 
             var response = await httpClient.PostAsync(url, content);
 

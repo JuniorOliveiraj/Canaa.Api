@@ -149,10 +149,6 @@ public class AuthController : ControllerBase
         public string? Nome  { get; set; }
     }
 
-
-
-
-
 }
 
 

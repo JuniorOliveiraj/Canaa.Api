@@ -1,5 +1,6 @@
 ﻿using Canaa.AppHost.utils;
 using Canaa.DataContracts.Whatsapp;
+using Canaa.Infra.ExternalServices.Azure.TTS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace Canaa.Infra.ExternalServices.Whatsapp
         {
             return await EnviarImagemUrl.SendImagem(request);
         }
+
     }
 }
 

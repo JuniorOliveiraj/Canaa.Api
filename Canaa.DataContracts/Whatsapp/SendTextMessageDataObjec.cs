@@ -5,6 +5,7 @@
         public string number { get; set; }
         public OptionsDataObjec options { get; set; }
         public TextMessage textMessage { get; set; }
+        public string instancia { get; set; }
     }
 
     public class OptionsDataObjec
