@@ -42,10 +42,10 @@ namespace Canaa.WhatsApp
         public async Task<IActionResult> EnviarImagemUrl()
         {
 
-            var imagePath = @"C:\Users\junio\OneDrive\Imagens\317664.jpg";
+                var imagePath = @"C:\Users\junio\OneDrive\Imagens\317664.jpg";
 
-            byte[] imageBytes = System.IO.File.ReadAllBytes(imagePath);
-            var base64String = Convert.ToBase64String(imageBytes);
+                byte[] imageBytes = System.IO.File.ReadAllBytes(imagePath);
+                var base64String = Convert.ToBase64String(imageBytes);
 
 
 

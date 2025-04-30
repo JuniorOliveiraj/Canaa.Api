@@ -1,43 +1,230 @@
-﻿using System;
+﻿using Canaa.Infra.ExternalServices.Utils;
+using Canaa.Infra.ExternalServices.Videos;
+using Canaa.Infra.ExternalServices.Videos.Legenda;
+using Org.BouncyCastle.Utilities.IO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using YoutubeExplode.Videos.Streams;
 using YoutubeExplode;
+using YoutubeExplode.Converter;
+using YoutubeExplode.Videos.Streams;
+
 
 namespace Canaa.Infra.ExternalServices.Youtube
 {
     public static class YoutubeDownloader
     {
-        public static async Task DownloadAsync(string url, string outputDirectory)
+        /// <summary>
+        /// Baixa um vídeo do YouTube (vídeo + áudio muxados) na melhor qualidade e retorna o caminho do arquivo.
+        /// </summary>
+        /// <param name="url">URL completa ou ID do vídeo.</param>
+        /// <param name="outputDirectory">Pasta onde o arquivo será salvo.</param>
+        /// <returns>O caminho completo do arquivo .mp4 baixado.</returns>
+        public static async Task<string> DownloadVideoAsync(
+            string url,
+            string outputDirectory,
+            string processId,
+            CancellationToken cancellationToken = default            
+            )
         {
+            
             var youtube = new YoutubeClient();
+            if(string.IsNullOrEmpty(processId))
+                ProgressService.InsertNewTask(processId, url);
+            ProgressService.UpdateTaskStatus(processId, "Iniciando");
 
-            var video = await youtube.Videos.GetAsync(url);
-            var title = SanitizeFileName(video.Title);
+            // 1) Obter metadados do vídeo
+                var video = await youtube.Videos.GetAsync(url, cancellationToken);
+            var safeTitle = Sanitize(video.Title);
+            Directory.CreateDirectory(outputDirectory);
+            var outputPath = Path.Combine(outputDirectory, $"{safeTitle}.mp4");
 
-            var streamManifest = await youtube.Videos.Streams.GetManifestAsync(video.Id);
-            var stream = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
-
-            if (stream is null)
+            if (File.Exists(outputPath))
             {
-                Console.WriteLine($"⚠️ Stream não encontrado para: {video.Title}");
-                return;
+                ProgressService.SetConcluido(processId);
+                return outputPath;
             }
 
-            Directory.CreateDirectory(outputDirectory);
-            var filePath = Path.Combine(outputDirectory, $"{title}.{stream.Container.Name}");
+            // 2) Buscar streams disponíveis
+            var manifest = await youtube.Videos.Streams.GetManifestAsync(url, cancellationToken);
 
-            await youtube.Videos.Streams.DownloadAsync(stream, filePath);
-            Console.WriteLine($"✅ Download concluído: {filePath}");
+            // 3) Tentar baixar um stream muxed (priorizando 1080p)
+            var muxedStream = manifest
+                .GetMuxedStreams()
+                .OrderByDescending(s => s.VideoQuality) // Prioriza 1080p, 720p, etc.
+                .FirstOrDefault();
+
+            if (muxedStream != null)
+            {
+                try
+                {
+                    ProgressService.UpdateTaskStatus(processId, "Baixando (muxed)");
+                    var progress = new Progress<double>(p =>
+                        ProgressService.SetProgress(processId, (int)(p * 100)));
+
+                    await youtube.Videos.Streams.DownloadAsync(
+                        muxedStream,
+                        outputPath,
+                        progress,
+                        cancellationToken
+                    );
+
+                    ProgressService.SetConcluido(processId);
+                    return outputPath;
+                }
+                catch
+                {
+                    // Se falhar, continuamos para o fallback com FFmpeg
+                    ProgressService.UpdateTaskStatus(processId, "Fallback: FFmpeg");
+                }
+            }
+
+            // 4) Fallback: Baixar vídeo + áudio separadamente e usar FFmpeg
+            ProgressService.UpdateTaskStatus(processId, "Buscando streams separados");
+
+            var videoStream = manifest
+                .GetVideoStreams()
+                .OrderByDescending(s => s.VideoQuality)
+                .FirstOrDefault()
+                ?? throw new InvalidOperationException("Nenhum stream de vídeo encontrado.");
+
+            var audioStream = manifest
+                .GetAudioStreams()
+                .OrderByDescending(s => s.Bitrate)
+                .FirstOrDefault()
+                ?? throw new InvalidOperationException("Nenhum stream de áudio encontrado.");
+
+            // 5) Configurar FFmpeg
+            var progressFFmpeg = new Progress<double>(p =>
+                ProgressService.SetProgress(processId, (int)(p * 100)));
+
+            var conversionRequest = new ConversionRequestBuilder(outputPath)
+                .SetPreset(ConversionPreset.Fast)
+                .SetFFmpegPath("ffmpeg") // Certifique-se de que o FFmpeg está no PATH
+                .Build();
+            var streams = new IStreamInfo[] { videoStream, audioStream };  // Tipo explícito
+
+            ProgressService.UpdateTaskStatus(processId, "Mesclando com FFmpeg");
+            await youtube.Videos.DownloadAsync(
+                streams,  // Agora com tipo definido
+                conversionRequest,
+                progressFFmpeg,
+                cancellationToken
+            );
+
+
+            ProgressService.SetConcluido(processId);
+
+            return outputPath;
         }
 
-        private static string SanitizeFileName(string name)
+
+
+        public static async Task<string> DownloadAudioAsync(string url, string outputDirectory)
         {
-            foreach (var c in Path.GetInvalidFileNameChars())
-                name = name.Replace(c, '_');
-            return name;
+            var youtube = new YoutubeClient();
+            var video = await youtube.Videos.GetAsync(url);
+            var title = Sanitize(video.Title);
+
+            var manifest = await youtube.Videos.Streams.GetManifestAsync(video.Id);
+            var audio = manifest.GetAudioOnlyStreams().GetWithHighestBitrate();
+
+            if (audio == null)
+                return "❌ Nenhum stream de áudio disponível.";
+
+            Directory.CreateDirectory(outputDirectory);
+            var path = Path.Combine(outputDirectory, $"{title}.{audio.Container.Name}");
+            await youtube.Videos.Streams.DownloadAsync(audio, path);
+
+            return path;
+        }
+
+        public static async Task<string> DownloadCaptionsAsync(string url, string outputDirectory, string language = "pt")
+        {
+            var youtube = new YoutubeClient();
+            var video = await youtube.Videos.GetAsync(url);
+            var title = Sanitize(video.Title);
+
+            var captionManifest = await youtube.Videos.ClosedCaptions.GetManifestAsync(video.Id);
+            var track = captionManifest.GetByLanguage(language);
+
+            if (track == null)
+                return $"❌ Sem legenda disponível para o idioma '{language}'.";
+
+            var captions = await youtube.Videos.ClosedCaptions.GetAsync(track);
+            var captionText = string.Join(Environment.NewLine,
+                captions.Captions.Select(c => $"{c.Offset}: {c.Text}"));
+
+            Directory.CreateDirectory(outputDirectory);
+            var path = Path.Combine(outputDirectory, $"{title}_captions_{language}.txt");
+            await File.WriteAllTextAsync(path, captionText);
+
+            var convert = LegendaConverter.ConverterTxtParaSrt(path);
+
+            return convert;
+        }
+
+
+        public static async Task<string> DownloadVideoOnlyAsync(string url, string outputDirectory)
+        {
+            var youtube = new YoutubeClient();
+            var video = await youtube.Videos.GetAsync(url);
+            var title = Sanitize(video.Title);
+
+            var manifest = await youtube.Videos.Streams.GetManifestAsync(video.Id);
+
+            // Pega o melhor stream de vídeo
+            var videoStream = manifest
+                .GetVideoOnlyStreams()
+                .OrderByDescending(s => s.VideoQuality.MaxHeight)
+                .FirstOrDefault();
+
+            // Pega o melhor stream de áudio
+            var audioStream = manifest
+                .GetAudioOnlyStreams()
+                .OrderByDescending(s => s.Bitrate)
+                .FirstOrDefault();
+
+            // Verifica se encontrou os streams
+            if (videoStream == null || audioStream == null)
+                throw new Exception("❌ Não foi possível encontrar um stream de vídeo ou áudio.");
+
+            // Cria diretório de saída, se necessário
+            Directory.CreateDirectory(outputDirectory);
+
+            string videoPath = Path.Combine(outputDirectory, $"{title}_video.{videoStream.Container.Name}");
+            string audioPath = Path.Combine(outputDirectory, $"{title}_audio.{audioStream.Container.Name}");
+
+            // Baixar o vídeo e áudio separadamente
+            await youtube.Videos.Streams.DownloadAsync(videoStream, videoPath);
+            await youtube.Videos.Streams.DownloadAsync(audioStream, audioPath);
+
+            // Verifique se os arquivos de vídeo e áudio foram baixados corretamente
+            if (!File.Exists(videoPath))
+            {
+                throw new Exception($"❌ O vídeo não foi baixado corretamente. Caminho: {videoPath}");
+            }
+
+            if (!File.Exists(audioPath))
+            {
+                throw new Exception($"❌ O áudio não foi baixado corretamente. Caminho: {audioPath}");
+            }
+
+            // Juntar vídeo e áudio
+            // var mergedVideoPath = await MargeVideos.MergeAudioAndVideoAsync(videoPath, audioPath, outputDirectory, true);
+
+            return "mergedVideoPath";
+        }
+
+
+        private static string Sanitize(string input)
+        {
+            var invalid = Path.GetInvalidFileNameChars();
+            foreach (var c in invalid)
+                input = input.Replace(c, '_');
+            return input;
         }
     }
 }

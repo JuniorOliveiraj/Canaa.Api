@@ -1,9 +1,10 @@
 ﻿using Canaa.AppHost.utils;
 using Canaa.DataContracts.Gastos;
 using Canaa.FN.BusinessComponents.Adicionar.AdicionarGastos;
-using Canaa.FN.BusinessComponents.Response;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Canaa.FN.BusinessComponents.Response;
 
 namespace Canaa.Financas.adicionar
 {
@@ -13,13 +14,13 @@ namespace Canaa.Financas.adicionar
     {
         [HttpPost]
         [HttpPost("Gastos-MercadoPago")]
-        public IActionResult GastosMercadoPago([FromBody] List<GastosMercadoPagoDataContract> gastos)
+        public async Task<IActionResult> GastosMercadoPago([FromBody] List<GastosMercadoPagoDataContract> gastos)
         {
             var gastosComponent = BusinessComponent.CreateInstance<IAdicionarJsonGastosMercadoPago>();
-             ResponseDataContrac result =  gastosComponent.AdicionarComJson(gastos);
+            var result = gastosComponent.AdicionarComJson(gastos);
             return Ok(result);
         }
     }
-    
-    
+
+
 }

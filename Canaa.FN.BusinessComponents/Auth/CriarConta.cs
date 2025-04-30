@@ -23,8 +23,7 @@ namespace Canaa.FN.BusinessComponents.Auth
             query.AddParameter(new Parameter("APELIDO", UserLogin.NomeUsuario));
             query.AddParameter(new Parameter("EMAIL", UserLogin.Email));
             query.AddParameter(new Parameter("SENHA", UserLogin.Senha));
-            query.AddParameter(new Parameter("NOME", UserLogin.Nome
-                ));
+            query.AddParameter(new Parameter("NOME", UserLogin.Nome));
             var result = query.Execute().FirstOrDefault();
 
             int id;

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Canaa.DataContracts")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7f0e12a59550699d45a1c8111cef28f2321b5ff8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e9d7466f24b8e9fbad936668c34478b39d5405af")]
 [assembly: System.Reflection.AssemblyProductAttribute("Canaa.DataContracts")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Canaa.DataContracts")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
