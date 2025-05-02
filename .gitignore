@@ -180,3 +180,11 @@ Canaa/appsettings.json
 /Canaa.Infra.ExternalServices/bin/Debug/net9.0/Canaa.Infra.ExternalServices.deps.json
 /Canaa.Infra.ExternalServices/bin/Release/net9.0/Canaa.Infra.ExternalServices.deps.json
 /Canaa.Infra.ExternalServices/obj/Release/net9.0/Canaa.Infra.ExternalServices.assets.cache
+/Canaa.DataContracts/bin/Debug/net9.0/Canaa.DataContracts.deps.json
+/Canaa.DataContracts/obj/Debug/net9.0/Canaa.DataContracts.assets.cache
+/Canaa.DataContracts/obj/Debug/net9.0/Canaa.DataContracts.csproj.AssemblyReference.cache
+/Canaa.DataContracts/obj/Canaa.DataContracts.csproj.nuget.dgspec.json
+/Canaa.DataContracts/obj/Canaa.DataContracts.csproj.nuget.g.targets
+/Canaa.DataContracts/obj/project.assets.json
+/Canaa.DataContracts/obj/project.nuget.cache
+/Canaa.DataContracts/obj/Release/net9.0/Canaa.DataContracts.AssemblyInfo.cs
