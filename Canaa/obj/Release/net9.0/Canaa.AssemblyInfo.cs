@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Canaa")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e9d7466f24b8e9fbad936668c34478b39d5405af")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fc222c92d8a9d32e1e41fe51b92ab25dec289eef")]
 [assembly: System.Reflection.AssemblyProductAttribute("Canaa")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Canaa")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

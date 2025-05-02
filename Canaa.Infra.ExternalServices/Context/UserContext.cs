@@ -26,6 +26,9 @@ namespace Canaa.Infra.ExternalServices.Context
 
         public string Nome =>
             _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.Name)?.Value;
+
+         public HttpContext HttpContext => _httpContextAccessor.HttpContext;
+
     }
 
 }

@@ -11,7 +11,7 @@ namespace Canaa.FN.BusinessComponents.Response
     {
         public bool success { get; set; }
         public string? message { get; set; }
-        public string? data { get; set; }
+        public Object? data { get; set; }
         public string? error { get; set; }
         public string? status { get; set; }
 

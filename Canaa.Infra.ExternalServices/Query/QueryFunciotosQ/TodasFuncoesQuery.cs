@@ -1,4 +1,5 @@
 ﻿using Canaa.DataContracts.Auth.Context;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,5 +36,16 @@ namespace Canaa.Infra.ExternalServices.Query.QueryFunciotosQ
 
             return processed;
         }
+
+        public IUserContext GetContext()
+        {
+            if (_userContext.HttpContext == null)
+            {
+                throw new Exception("IUserContext não foi injetado!");
+            }
+             
+            return _userContext;
+        }
+
     }
 }

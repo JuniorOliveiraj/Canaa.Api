@@ -69,6 +69,18 @@ namespace Canaa.Infra.ExternalServices.Utils
             query.Execute();
         }
 
+        public static void UpdateTaskFileUrl(string processGUID, string url)
+        {
+            var query = new Canaa.AppHost.utils.Query.Query(@"
+                UPDATE Z_TAREFAS
+                SET URL = :URL 
+                WHERE GUID = :GUID");
+
+            query.AddParameter(new Parameter("URL", url));
+            query.AddParameter(new Parameter("GUID", processGUID));
+            query.Execute();
+        }
+
         // Registra mensagem de erro
         public static void UpdateTaskError(string processGUID, string errorMessage)
         {
@@ -103,6 +115,17 @@ namespace Canaa.Infra.ExternalServices.Utils
         {
             UpdateTaskStatus(processGUID, "Completo");
             SetProgress(processGUID, 100);
+        }
+        public static void SetTaskCategoria(string processGUID, TarefasCategorias categorias )
+        {
+            var query = new Canaa.AppHost.utils.Query.Query(@"
+                UPDATE Z_TAREFAS
+                SET CATEGORIA = :CATEGORIA
+                WHERE GUID = :GUID");
+
+            query.AddParameter(new Parameter("CATEGORIA", categorias));
+            query.AddParameter(new Parameter("GUID", processGUID));
+            query.Execute();
         }
 
         // Retorna o progresso e status atual

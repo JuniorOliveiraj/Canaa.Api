@@ -4,6 +4,7 @@ using Canaa.Infra.ExternalServices.Videos.Legenda;
 using Org.BouncyCastle.Utilities.IO;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,24 +27,20 @@ namespace Canaa.Infra.ExternalServices.Youtube
             string url,
             string outputDirectory,
             string processId,
-            CancellationToken cancellationToken = default            
+            CancellationToken cancellationToken = default
             )
         {
-            
             var youtube = new YoutubeClient();
-            if(string.IsNullOrEmpty(processId))
-                ProgressService.InsertNewTask(processId, url);
             ProgressService.UpdateTaskStatus(processId, "Iniciando");
 
             // 1) Obter metadados do vídeo
-                var video = await youtube.Videos.GetAsync(url, cancellationToken);
+            var video = await youtube.Videos.GetAsync(url, cancellationToken);
             var safeTitle = Sanitize(video.Title);
             Directory.CreateDirectory(outputDirectory);
             var outputPath = Path.Combine(outputDirectory, $"{safeTitle}.mp4");
 
             if (File.Exists(outputPath))
             {
-                ProgressService.SetConcluido(processId);
                 return outputPath;
             }
 
@@ -53,7 +50,7 @@ namespace Canaa.Infra.ExternalServices.Youtube
             // 3) Tentar baixar um stream muxed (priorizando 1080p)
             var muxedStream = manifest
                 .GetMuxedStreams()
-                .OrderByDescending(s => s.VideoQuality) // Prioriza 1080p, 720p, etc.
+                .OrderByDescending(s => s.VideoQuality)
                 .FirstOrDefault();
 
             if (muxedStream != null)
@@ -71,13 +68,12 @@ namespace Canaa.Infra.ExternalServices.Youtube
                         cancellationToken
                     );
 
-                    ProgressService.SetConcluido(processId);
                     return outputPath;
                 }
-                catch
+                catch (Exception ex)
                 {
-                    // Se falhar, continuamos para o fallback com FFmpeg
-                    ProgressService.UpdateTaskStatus(processId, "Fallback: FFmpeg");
+                    ProgressService.UpdateTaskError(processId, ex.Message);
+                    return "Erro";
                 }
             }
 
@@ -113,16 +109,12 @@ namespace Canaa.Infra.ExternalServices.Youtube
                 progressFFmpeg,
                 cancellationToken
             );
-
-
-            ProgressService.SetConcluido(processId);
-
             return outputPath;
         }
 
 
 
-        public static async Task<string> DownloadAudioAsync(string url, string outputDirectory)
+        public static async Task<string> DownloadAudioAsync(string url, string outputDirectory, string processId)
         {
             var youtube = new YoutubeClient();
             var video = await youtube.Videos.GetAsync(url);
@@ -132,11 +124,19 @@ namespace Canaa.Infra.ExternalServices.Youtube
             var audio = manifest.GetAudioOnlyStreams().GetWithHighestBitrate();
 
             if (audio == null)
+            {
+                ProgressService.UpdateTaskError(processId, "❌ Nenhum stream de áudio disponível.");
                 return "❌ Nenhum stream de áudio disponível.";
+            }
+
+            var progressFFmpeg = new Progress<double>(p =>
+                    ProgressService.SetProgress(processId, (int)(p * 100)));
 
             Directory.CreateDirectory(outputDirectory);
             var path = Path.Combine(outputDirectory, $"{title}.{audio.Container.Name}");
-            await youtube.Videos.Streams.DownloadAsync(audio, path);
+
+            ProgressService.UpdateTaskStatus(processId, "Baixando áudio");
+            await youtube.Videos.Streams.DownloadAsync(audio, path, progressFFmpeg);
 
             return path;
         }
@@ -151,7 +151,7 @@ namespace Canaa.Infra.ExternalServices.Youtube
             var track = captionManifest.GetByLanguage(language);
 
             if (track == null)
-                return $"❌ Sem legenda disponível para o idioma '{language}'.";
+                return $"Erro";
 
             var captions = await youtube.Videos.ClosedCaptions.GetAsync(track);
             var captionText = string.Join(Environment.NewLine,

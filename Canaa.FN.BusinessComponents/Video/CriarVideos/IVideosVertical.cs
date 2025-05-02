@@ -5,7 +5,9 @@ namespace Canaa.FN.BusinessComponents.Video.CriarVideos
 {
     public interface IVideosVertical
     {
-        Task<ResponseDataContrac> EmpilharVideosCompletoAsync(string linkVideoTop, string linkVideoButton);
-        Task<ResponseDataContrac> EmpilharVideosAsync(string linkVideoTop, string linkVideoButton);
+        Task<ResponseDataContrac> EmpilharVideosLegendar(string linkVideoTop, string linkVideoButton);
+        Task<ResponseDataContrac> EmpilharVideo(string linkVideoTop, string linkVideoButton);
+        Task<ResponseDataContrac> AdicionarLegendasAoVideo(string pathVideoPrincipal, string pathLegendas);
+
     }
 }

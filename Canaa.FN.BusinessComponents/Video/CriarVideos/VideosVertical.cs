@@ -1,10 +1,13 @@
-﻿using Canaa.DataContracts.Videos;
+﻿using AngleSharp.Io;
+using Canaa.DataContracts.Auth.Context;
+using Canaa.DataContracts.Videos;
 using Canaa.FN.BusinessComponents.Response;
 using Canaa.FN.BusinessComponents.Utils;
 using Canaa.Infra.ExternalServices.Utils;
 using Canaa.Infra.ExternalServices.Youtube;
 using Mysqlx.Session;
 using MySqlX.XDevAPI.Common;
+using Ninject.Activation;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,14 +21,21 @@ namespace Canaa.FN.BusinessComponents.Video.CriarVideos
 {
     public class VideosVertical : IVideosVertical
     {
+        private readonly IUserContext _userContext;
+
+        public VideosVertical(IUserContext userContext)
+        {
+            _userContext = userContext;
+        }
+
         private string _guid;
 
-        public async Task<ResponseDataContrac> EmpilharVideosCompletoAsync(string linkVideoTop, string linkVideoButton)
+        public async Task<ResponseDataContrac> EmpilharVideosLegendar(string linkVideoTop, string linkVideoButton)
         {
             _guid = Guid.NewGuid().ToString();
             ProgressService.InsertNewTask(_guid, "VIDEO");
             ProgressService.UpdateTaskStatus(_guid, "Iniciando");
-            string tempDirectory = ApiLocation.DiretorioTemporario("Youtube");
+            string tempDirectory = CanaaContext.DiretorioTemporario("Youtube");
             GerarTentarCriarVideo result = await BaixarVideos(linkVideoTop, linkVideoButton, tempDirectory);
 
             if (result.sucess == false)
@@ -40,48 +50,55 @@ namespace Canaa.FN.BusinessComponents.Video.CriarVideos
                     status = "ERROR"
                 };
             }
-            string VideoPath = await VideoStackerTemplate.StackVerticallyAsync(
-                result.VideoTopPath,
-                result.VideoButtonPath,
-                tempDirectory,
-                1080,
-                _guid
-             );
+            EmpilharVideosDataObject empilharVideosData = new EmpilharVideosDataObject();
+            empilharVideosData.VideoTop = result.VideoTopPath;
+            empilharVideosData.VideoBottom = result.VideoButtonPath;
+            empilharVideosData.OutputDirectory = tempDirectory;
+            empilharVideosData.ProcessId = _guid;
+            string VideoPath = await VideoStackerTemplate.StackVerticallyAsync(empilharVideosData);
+
 
             string finalComLegenda = Path.Combine(tempDirectory, NomeArquivoFinal(result.VideoTopPath));
 
             ProgressService.UpdateTaskStatus(_guid, "Empilhando Videos");
 
-            var videoFinal = VideoStackerTemplate.AdicionarLegendasAoVideo(
-                VideoPath,
-                result.legendas,
-               finalComLegenda,
-                    progressLine => {
-                        // aqui você pode atualizar um progress bar, log no UI etc.
+            LegendarVideosDataObject legendarVideosDataObject = new LegendarVideosDataObject();
 
-                        Console.WriteLine("PROGRESS: " + progressLine);
-                    }
-                );
+            legendarVideosDataObject.Video = VideoPath;
+            legendarVideosDataObject.Legendas = result.legendas;
+            legendarVideosDataObject.FinalComLegenda = finalComLegenda;
+            legendarVideosDataObject.OnProgress = progressLine =>
+            {
+                // ProgressService.SetProgress(_guid,progressLine);
+                Console.WriteLine("PROGRESS: " + progressLine);
+            };
+            var videoFinal = VideoStackerTemplate.AdicionarLegendasAoVideo(legendarVideosDataObject);       
+
+            ProgressService.UpdateTaskFilePath(_guid, videoFinal);
+
+            ProgressService.SetTaskCategoria(_guid, TarefasCategorias.CriarVideoCompleto);
             ProgressService.SetConcluido(_guid);
-            // Chama o método de empilhamento vertical
+
             return new ResponseDataContrac
             {
                 success = true,
                 message = "Vídeos empilhados com sucesso.",
-                data = videoFinal,
+                data = new string[] { videoFinal },
                 error = null,
                 status = "OK"
             };
         }
 
 
-        public async Task<ResponseDataContrac> EmpilharVideosAsync(string pathVideoPrincipal, string pathVideoSecundario)
+        public async Task<ResponseDataContrac> EmpilharVideo(string pathVideoPrincipal, string pathVideoSecundario)
         {
-            string VideoPath = await VideoStackerTemplate.StackVerticallyAsync(
-                pathVideoPrincipal,
-                pathVideoSecundario,
-                CaminhoArquivoFinal()
-             );
+            EmpilharVideosDataObject empilharVideosData = new EmpilharVideosDataObject
+            {
+                VideoTop = pathVideoPrincipal,
+                VideoBottom = pathVideoSecundario,
+                OutputDirectory = CaminhoArquivoFinal()
+            };
+            string VideoPath = await VideoStackerTemplate.StackVerticallyAsync(empilharVideosData);
             return new ResponseDataContrac
             {
                 success = true,
@@ -93,21 +110,21 @@ namespace Canaa.FN.BusinessComponents.Video.CriarVideos
         }
 
 
-        public async Task<ResponseDataContrac> EmpilharVideoLegendadoAsync(string pathVideoPrincipal, string pathLegendas)
+        public async Task<ResponseDataContrac> AdicionarLegendasAoVideo(string pathVideoPrincipal, string pathLegendas)
         {
             string finalComLegenda = Path.Combine(CaminhoArquivoFinal(), NomeArquivoFinal(pathVideoPrincipal));
 
+            LegendarVideosDataObject legendarVideosDataObject = new LegendarVideosDataObject();
 
-            var videoFinal = VideoStackerTemplate.AdicionarLegendasAoVideo(
-               pathVideoPrincipal,
-               pathLegendas,
-               finalComLegenda,
-                    progressLine => {
-                        // aqui você pode atualizar um progress bar, log no UI etc.
-                        Console.WriteLine("PROGRESS: " + progressLine);
-                    }
-                );
+            legendarVideosDataObject.Video = pathVideoPrincipal;
+            legendarVideosDataObject.Legendas = pathLegendas;
+            legendarVideosDataObject.FinalComLegenda = finalComLegenda;
+            legendarVideosDataObject.OnProgress = progressLine =>
+            {
+                Console.WriteLine("PROGRESS: " + progressLine);
+            };
 
+            var videoFinal = VideoStackerTemplate.AdicionarLegendasAoVideo(legendarVideosDataObject);
 
             return new ResponseDataContrac
             {
@@ -123,7 +140,7 @@ namespace Canaa.FN.BusinessComponents.Video.CriarVideos
         private async Task<GerarTentarCriarVideo> BaixarVideos(string linkVideoTop, string linkVideoButton, string diretorio)
         {
             var videoTopPath = await YoutubeDownloader.DownloadVideoAsync(linkVideoTop, diretorio, _guid);
-            var videoButtonPath = await YoutubeDownloader.DownloadVideoAsync(linkVideoButton, diretorio, _guid); 
+            var videoButtonPath = await YoutubeDownloader.DownloadVideoAsync(linkVideoButton, diretorio, _guid);
             var LegendaPath = await YoutubeDownloader.DownloadCaptionsAsync(linkVideoTop, diretorio);
 
             if (videoTopPath == null || videoButtonPath == null || LegendaPath == null)
@@ -147,10 +164,8 @@ namespace Canaa.FN.BusinessComponents.Video.CriarVideos
         private string NomeArquivoFinal(string path)
         {
             string fileName = Path.GetFileName(path);
-            // Separar nome e extensão
             string nameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
             string extension = Path.GetExtension(fileName);
-            // Adicionar o "_COM-LEGENDAS"
             string newFileName = $"{nameWithoutExtension}_COM-LEGENDAS{extension}";
             return newFileName;
         }

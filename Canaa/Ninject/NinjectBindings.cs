@@ -5,6 +5,7 @@ using Canaa.FN.BusinessComponents.Auth;
 using Canaa.FN.BusinessComponents.Adicionar.AdicionarGastos;
 using Canaa.FN.BusinessComponents.Video.CriarVideos;
 using Canaa.FN.BusinessComponents.Video.Youtube;
+using Canaa.FN.BusinessComponents.Response;
 
 
 namespace Canaa.Ninject
@@ -28,8 +29,8 @@ namespace Canaa.Ninject
 
             //WF
             kernel.Bind<IVideosVertical>().To<VideosVertical>();
-
             kernel.Bind<IYoutubeComponent>().To<YoutubeComponent>();
+            kernel.Bind<IControleTarefas>().To<ControleTarefas>();
 
             //Configuração
             kernel.Bind<IConfiguration>().ToMethod(ctx =>
