@@ -70,17 +70,16 @@ docker-compose up --build
 📬 Endpoints principais
 POST /auth/login
 
-GET /api/[controller]
+GET /v1/[controller]
 
-POST /api/[controller]
+POST /v1/[controller]
 
-PUT /api/[controller]/{id}
+PUT /v1/[controller]/{id}
 
-DELETE /api/[controller]/{id}
+DELETE /v1/[controller]/{id}
 
 Documentação completa disponível em: http://localhost:5000/swagger
 
 🙋 Sobre mim
 Desenvolvido por Júnior — apaixonado por arquitetura de software, clean code e boas práticas.
 
-Se quiser, posso gerar esse README já formatado como arquivo Markdown, ou incluir informações específicas como o nome da API, domínio do projeto (ex: RH, vendas, tarefas), escopo do CRUD, etc. É só me passar!
