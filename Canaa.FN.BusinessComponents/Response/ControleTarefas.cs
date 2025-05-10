@@ -1,8 +1,11 @@
 ﻿using Canaa.AppHost.utils.Query;
+using Canaa.DataContracts.Videos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Canaa.FN.BusinessComponents.Response
@@ -17,6 +20,18 @@ namespace Canaa.FN.BusinessComponents.Response
             var result = query.Execute();
             if (result != null && result.Count > 0) 
             {
+                foreach (var item in result)
+                {
+                    if (item.ContainsKey("CATEGORIA") && int.TryParse(item["CATEGORIA"].ToString(), out int categoriaInt))
+                    {
+                        if (Enum.IsDefined(typeof(TarefasCategorias), categoriaInt))
+                        {
+                            var categoriaEnum = (TarefasCategorias)categoriaInt;
+                            item["CATEGORIA_NOME"] = GetJsonPropertyName(categoriaEnum); // Ex: "Baixar Video"
+                        }
+                    }
+                }
+
                 response.success = true;
                 response.data = result;
                 response.message = "Tarefas pendentes encontradas.";
@@ -28,5 +43,13 @@ namespace Canaa.FN.BusinessComponents.Response
             }
             return response;
         }
+        private string GetJsonPropertyName(Enum value)
+        {
+            var field = value.GetType().GetField(value.ToString());
+            var attr = field?.GetCustomAttribute<JsonPropertyNameAttribute>();
+            return attr?.Name ?? value.ToString(); // Usa o nome legível, como "Baixar Video"
+        }
     }
+
+    
 }

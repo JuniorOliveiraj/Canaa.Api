@@ -16,8 +16,8 @@ namespace Canaa.FN.BusinessComponents.Buscar.Gastos
                 WHERE
                 YEAR(data) = @ANO AND 
                 MONTH(data) = @MES
-                AND STATUS <> 'Inativo'");
-           //  query.AddParameter(new Parameter("STATUS", StatusGastos.Inativo));
+                AND STATUS <> :STATUS");
+            query.AddParameter(new Parameter("STATUS", StatusGastos.Inativo));
 
             var result = query.Execute().FirstOrDefault();
 

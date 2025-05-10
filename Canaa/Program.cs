@@ -50,7 +50,26 @@ BusinessComponent.Initialize(kernel);
 NinjectBindingsInfra.Register(kernel);
 BusinessComponentInfra.Initialize(kernel);
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontendClients", // <-- este nome
+        policy =>
+        {
+            policy.WithOrigins(
+                "http://localhost:3000",
+                "https://www.juniorbelem.com"
+            )
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+        });
+});
+
+
+
+
 var app = builder.Build();
+app.UseCors("AllowFrontendClients");
 
 /////
 //  Ambiente de desenvolvimento
