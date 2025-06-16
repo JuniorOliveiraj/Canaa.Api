@@ -16,7 +16,7 @@ namespace Canaa.Infra.ExternalServices.Whatsapp
             if (request == null)
                 return "Erro: requisição nula.";
 
-            var config = Config.Build(); // <-- usando padrão tipo o seu `Query` para pegar config
+            var config = Config.Build(); 
             var baseUrl = config["WhatsAppApi:BaseUrl"];
             var apiKey = config["WhatsAppApi:ApiKey"];
 

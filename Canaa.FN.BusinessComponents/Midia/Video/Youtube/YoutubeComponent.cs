@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Canaa.FN.BusinessComponents.Video.Youtube
+namespace Canaa.FN.BusinessComponents.Midia.Video.Youtube
 {
     public class YoutubeComponent : IYoutubeComponent
     {

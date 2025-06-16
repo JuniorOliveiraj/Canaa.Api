@@ -17,7 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YoutubeExplode.Videos;
 
-namespace Canaa.FN.BusinessComponents.Video.CriarVideos
+namespace Canaa.FN.BusinessComponents.Midia.Video.CriarVideos
 {
     public class VideosVertical : IVideosVertical
     {

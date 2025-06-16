@@ -1,5 +1,6 @@
 ﻿using Canaa.AppHost.utils;
-using Canaa.FN.BusinessComponents.Buscar.Gastos;
+using Canaa.FN.BusinessComponents.Financas.Buscar.Gastos;
+
 
 //using Canaa.FN.BusinessComponents.Buscar.Gastos;
 using Microsoft.AspNetCore.Authorization;

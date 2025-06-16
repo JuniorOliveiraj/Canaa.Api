@@ -1,9 +1,7 @@
-﻿
-
-using Canaa.AppHost.utils.Query;
+﻿using Canaa.AppHost.utils.Query;
 using Canaa.DataContracts.Gastos;
 
-namespace Canaa.FN.BusinessComponents.Buscar.Gastos
+namespace Canaa.FN.BusinessComponents.Financas.Buscar.Gastos
 {
     public class TotalGastos : ITotalGastos
     {

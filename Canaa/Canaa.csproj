@@ -23,4 +23,8 @@
     <ProjectReference Include="..\Canaa.Infra.ExternalServices\Canaa.Infra.ExternalServices.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Midias\Postagem\" />
+  </ItemGroup>
+
 </Project>

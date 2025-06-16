@@ -1,7 +1,7 @@
 ﻿using Canaa.AppHost.utils;
 using Canaa.DataContracts.Videos;
+using Canaa.FN.BusinessComponents.Midia.Video.Youtube;
 using Canaa.FN.BusinessComponents.Utils;
-using Canaa.FN.BusinessComponents.Video.Youtube;
 using Canaa.Infra.ExternalServices.Youtube;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

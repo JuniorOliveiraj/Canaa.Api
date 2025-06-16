@@ -12,20 +12,20 @@ namespace Canaa.Infra.ExternalServices.Azure.TTS
     public static class AzureTextToSpeech
     {
 
-        public static async Task<string> GenerateSpeechAsync(string text, string outputPath, AzureTTSVoice voice)
+        public static async Task<situacaoCriacao> GenerateSpeechAsync(string text, string outputPath, AzureTTSVoice voice)
         {
             string voiceName = voice.ToString().Replace("ptBR_", "pt-BR-");
             try
             {
                 if (string.IsNullOrWhiteSpace(text))
-                    return "❌ Texto de entrada vazio.";
+                    return Error("❌ Texto de entrada vazio.");
 
                 var config = Config.Build();
                 var subscriptionKey = config["Azure:chave"];
                 var region = config["Azure:region"];
 
                 if (string.IsNullOrEmpty(subscriptionKey) || string.IsNullOrEmpty(region))
-                    return "❌ Configuração inválida: verifique se Azure:chave e Azure:region estão definidos.";
+                    return Error("❌ Configuração inválida: verifique se Azure:chave e Azure:region estão definidos.");
 
                 string url = $"https://{region}.tts.speech.microsoft.com/cognitiveservices/v1";
 
@@ -54,22 +54,39 @@ namespace Canaa.Infra.ExternalServices.Azure.TTS
                         Directory.CreateDirectory(Path.GetDirectoryName(outputPath)!);
                         await File.WriteAllBytesAsync(outputPath, audioBytes);
 
-                        return $"✅ Áudio gerado com sucesso!\n📍 Caminho: {outputPath}";
+                        return Sucesso(outputPath);
                     }
                     else
                     {
                         string errorContent = await response.Content.ReadAsStringAsync();
-
-                        return $"❌ Falha na solicitação Azure TTS\n" +
+                        string mensage = $"❌ Falha na solicitação Azure TTS\n" +
                                $"📡 Status: {response.StatusCode}\n" +
                                $"📄 Detalhes: {errorContent}";
+
+                        return Error(mensage);
                     }
                 }
             }
             catch (Exception ex)
             {
-                return $"❌ Erro inesperado ao gerar fala:\n🧨 {ex.Message}";
+                return Error($"❌ Erro inesperado ao gerar fala:\n🧨 {ex.Message}");
             }
         }
+        private static situacaoCriacao Error(string mensagem)
+        {
+            situacaoCriacao situacaoCriacao = new situacaoCriacao();
+            situacaoCriacao.sucesso = false;
+            situacaoCriacao.mensagem = mensagem;
+            return situacaoCriacao ;    
+        }
+        private static situacaoCriacao Sucesso (string mensagem)
+        {
+            situacaoCriacao situacaoCriacao = new situacaoCriacao();
+            situacaoCriacao.sucesso = true;
+            situacaoCriacao.mensagem = mensagem;
+            return situacaoCriacao;
+        }
+        
+      
     }
 }

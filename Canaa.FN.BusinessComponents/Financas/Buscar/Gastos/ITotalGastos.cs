@@ -1,4 +1,4 @@
-﻿namespace Canaa.FN.BusinessComponents.Buscar.Gastos
+﻿namespace Canaa.FN.BusinessComponents.Financas.Buscar.Gastos
 {
     public interface ITotalGastos
     {

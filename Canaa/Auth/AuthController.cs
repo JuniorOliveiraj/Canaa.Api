@@ -27,7 +27,7 @@ public class AuthController : ControllerBase
 
     [AllowAnonymous]
     [HttpPost("login")]
-    public IActionResult LoginJwt([FromBody] ParamUser param)
+    public IActionResult LoginJwt(ParamUser param)
     {
         var credentials = new UserLogin
         {

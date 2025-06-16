@@ -1,11 +1,12 @@
 ﻿
-using Ninject;
-using Canaa.FN.BusinessComponents.Buscar.Gastos;
-using Canaa.FN.BusinessComponents.Auth;
 using Canaa.FN.BusinessComponents.Adicionar.AdicionarGastos;
-using Canaa.FN.BusinessComponents.Video.CriarVideos;
-using Canaa.FN.BusinessComponents.Video.Youtube;
+using Canaa.FN.BusinessComponents.Auth;
+using Canaa.FN.BusinessComponents.Financas.Buscar.Gastos;
+using Canaa.FN.BusinessComponents.Midia.Audio;
+using Canaa.FN.BusinessComponents.Midia.Video.CriarVideos;
+using Canaa.FN.BusinessComponents.Midia.Video.Youtube;
 using Canaa.FN.BusinessComponents.Response;
+using Ninject;
 
 
 namespace Canaa.Ninject
@@ -31,6 +32,7 @@ namespace Canaa.Ninject
             kernel.Bind<IVideosVertical>().To<VideosVertical>();
             kernel.Bind<IYoutubeComponent>().To<YoutubeComponent>();
             kernel.Bind<IControleTarefas>().To<ControleTarefas>();
+            kernel.Bind<IGerarAudioComTts>().To<GerarAudioComTts>();
 
             //Configuração
             kernel.Bind<IConfiguration>().ToMethod(ctx =>

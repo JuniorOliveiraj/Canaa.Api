@@ -1,7 +1,7 @@
 ﻿using Canaa.AppHost.utils;
 using Canaa.FN.BusinessComponents.Auth;
+using Canaa.FN.BusinessComponents.Midia.Video.CriarVideos;
 using Canaa.FN.BusinessComponents.Utils;
-using Canaa.FN.BusinessComponents.Video.CriarVideos;
 using Canaa.Infra.ExternalServices.Azure;
 using Canaa.Infra.ExternalServices.Videos;
 using Canaa.Infra.ExternalServices.Youtube;

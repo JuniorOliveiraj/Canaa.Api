@@ -2,7 +2,7 @@
 using Canaa.FN.BusinessComponents.Response;
 using Microsoft.AspNetCore.Http;
 
-namespace Canaa.FN.BusinessComponents.Video.Youtube
+namespace Canaa.FN.BusinessComponents.Midia.Video.Youtube
 {
     public interface IYoutubeComponent
     {

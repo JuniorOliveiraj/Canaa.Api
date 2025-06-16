@@ -1,7 +1,7 @@
 ﻿using Canaa.DataContracts.Videos;
 using Canaa.FN.BusinessComponents.Response;
 
-namespace Canaa.FN.BusinessComponents.Video.CriarVideos
+namespace Canaa.FN.BusinessComponents.Midia.Video.CriarVideos
 {
     public interface IVideosVertical
     {
