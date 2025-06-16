@@ -1,5 +1,4 @@
-﻿using Canaa.DataContracts.Auth.Context;
-using Canaa.Infra.ExternalServices.Entities;
+﻿using Canaa.DataContracts.Auth.Context; 
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -21,8 +20,7 @@ namespace Canaa.Infra.ExternalServices.Context
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-        }
-        public DbSet<Usuario> Ususario { get; set; } 
+        } 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

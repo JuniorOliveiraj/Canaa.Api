@@ -19,9 +19,8 @@ namespace Canaa.Ninject
             // Exemplo:
             // kernel.Bind<IMeuServico>().To<MeuServico>();
            
-            //Auth
-            kernel.Bind<ICriarConta>().To<CriarConta>();
-            kernel.Bind<ILogin>().To<Login>();
+            //Auth 
+            kernel.Bind<IAuthContaUsuario>().To<AuthContaUsuario>();
 
             //Gastos
             kernel.Bind<ITotalGastos>().To<TotalGastos>();

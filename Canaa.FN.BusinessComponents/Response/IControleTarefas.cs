@@ -3,5 +3,6 @@
     public interface IControleTarefas
     {
         ResponseDataContrac GetTarefasPendentes();
+        List<Dictionary<string, object>> tabela();
     }
 }

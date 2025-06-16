@@ -1,14 +1,13 @@
 ﻿
-using Canaa.Configs;
 using Canaa.AppHost.utils;
-
-using Ninject;
-
-using Canaa.Ninject;
+using Canaa.Configs;
+using Canaa.DataContracts.Auth.Context;
 using Canaa.Infra.ExternalServices.Context;
 using Canaa.Infra.ExternalServices.Dependency;
-using Canaa.DataContracts.Auth.Context;
+using Canaa.Ninject;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.EntityFrameworkCore;
+using Ninject;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -65,7 +64,12 @@ builder.Services.AddCors(options =>
         });
 });
 
-
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseMySql(
+        Config.GetConnectionString(),
+        ServerVersion.AutoDetect(Config.GetConnectionString())
+    )
+);
 
 
 var app = builder.Build();
@@ -74,6 +78,8 @@ app.UseCors("AllowFrontendClients");
 /////
 //  Ambiente de desenvolvimento
 ////
+///
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

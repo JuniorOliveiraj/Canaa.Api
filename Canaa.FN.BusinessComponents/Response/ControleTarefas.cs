@@ -1,4 +1,5 @@
-﻿using Canaa.AppHost.utils.Query;
+﻿using AngleSharp.Dom;
+using Canaa.AppHost.utils.Query;
 using Canaa.DataContracts.Videos;
 using System;
 using System.Collections.Generic;
@@ -49,7 +50,15 @@ namespace Canaa.FN.BusinessComponents.Response
             var attr = field?.GetCustomAttribute<JsonPropertyNameAttribute>();
             return attr?.Name ?? value.ToString(); // Usa o nome legível, como "Baixar Video"
         }
+
+        public List<Dictionary<string, object>> tabela() 
+        {
+            var query = new Query(@"SHOW COLUMNS FROM Z_USUARIOS");
+            return query.Execute(); // Retorna diretamente o resultado da execução
+        }
+    }
     }
 
     
-}
+ 
+ 

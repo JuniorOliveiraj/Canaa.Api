@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Canaa.Infra.ExternalServices.EntitiesConfiguration
+namespace Canaa.FN.BusinessComponents.Usuarios
 {
-    class Startup
+    public class UsuariosBusiness : IUsuariosBusiness
     {
+
     }
 }

@@ -35,8 +35,8 @@ public class AuthController : ControllerBase
             Senha = param.Senha
         };
 
-        var loginComponent = BusinessComponent.CreateInstance<ILogin>();
-        var loginResult = loginComponent.FazerLogin(credentials);
+        var loginComponent = BusinessComponent.CreateInstance<IAuthContaUsuario>();
+        var loginResult = loginComponent.Login(credentials);
 
         if (!loginResult?.Autorizado ?? true)
         {
@@ -47,7 +47,7 @@ public class AuthController : ControllerBase
         var (token, jti) = tokenGenerator.GetToken(
             loginResult.Id.ToString(),
             loginResult.Email,
-            loginResult.Email
+            loginResult.Senha
         );
         TokenStore.TokensPorUsuario[loginResult.Id.ToString()] = jti;
 
@@ -68,8 +68,8 @@ public class AuthController : ControllerBase
             Senha = param.Senha,
             Nome = param.Nome
         };
-        var createnComponent = BusinessComponent.CreateInstance<ICriarConta>();
-        var createResult = createnComponent.Create(credentials);
+        var createnComponent = BusinessComponent.CreateInstance<IAuthContaUsuario>();
+        var createResult = createnComponent.CriarConta(credentials);
         if (createResult?.Mensage != null &&!createResult.Autorizado)
         {
             return BadRequest(new { Mensage = createResult.Mensage });
@@ -78,7 +78,7 @@ public class AuthController : ControllerBase
         var (token, jti) = tokenGenerator.GetToken(
             createResult.Id.ToString(),
             createResult.Email,
-            createResult.Email
+            createResult.Senha
         );
         TokenStore.TokensPorUsuario[createResult.Id.ToString()] = jti;
 
@@ -89,29 +89,7 @@ public class AuthController : ControllerBase
             token = token,
         });
     }
-
-
-
-    // ROTA PÚBLICA  
-    [Authorize]
-    [HttpGet("private")]
-    public IActionResult GetUser()
-    {
-        var userComponent = BusinessComponent.CreateInstance<IUsuarioLogadoMetodo>();
-        UsuarioLogado user = userComponent.Usuario();
-        if (user == null)
-        {
-            return Unauthorized();
-        }
-
-        return Ok(new { mensage = "Rota publixa", user = user.Email });
-    }
-    [AllowAnonymous]
-    [HttpGet("public")]
-    public IActionResult Liberado()
-    {
-        return Ok(new { user = "Rota publixa" });
-    }
+ 
 
     [AllowAnonymous]
     [HttpGet("Liberado")]
@@ -123,8 +101,8 @@ public class AuthController : ControllerBase
             Senha = "123"
         };
 
-        var loginComponent = BusinessComponent.CreateInstance<ILogin>();
-        var loginResult = loginComponent.FazerLogin(credentials);
+        var loginComponent = BusinessComponent.CreateInstance<IAuthContaUsuario>();
+        var loginResult = loginComponent.Login(credentials);
 
         if (!loginResult?.Autorizado ?? true)
         {
