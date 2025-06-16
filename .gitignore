@@ -12,6 +12,8 @@ Canaa/appsettings.json
 /Canaa/.vs/Canaa/v17/.suo
 *.json
 
+/Canaa/bin/
+/Canaa/obj/
 
 /Canaa.FN.BusinessComponents/bin/*.pdb
 /Canaa.FN.BusinessComponents/bin/*.dll
@@ -23,16 +25,7 @@ Canaa/appsettings.json
 /Canaa.Infra.ExternalServices/obj/Debug/net9.0/Canaa.Infra.ExternalServices.csproj.AssemblyReference.cache
 /Canaa/.vs/Canaa/v17/DocumentLayout.backup.json
 /Canaa/.vs/Canaa/v17/DocumentLayout.json
-/Canaa/bin/Debug/net9.0/appsettings.json
-/Canaa/bin/Debug/net9.0/Canaa.DataContracts.dll
-/Canaa/bin/Debug/net9.0/Canaa.DataContracts.pdb
-/Canaa/bin/Debug/net9.0/Canaa.dll
-/Canaa/bin/Debug/net9.0/Canaa.exe
-/Canaa/bin/Debug/net9.0/Canaa.FN.BusinessComponents.dll
-/Canaa/bin/Debug/net9.0/Canaa.FN.BusinessComponents.pdb
-/Canaa/bin/Debug/net9.0/Canaa.Infra.ExternalServices.dll
-/Canaa/bin/Debug/net9.0/Canaa.Infra.ExternalServices.pdb
-/Canaa/bin/Debug/net9.0/Canaa.pdb
+
 /Canaa/obj/Debug/net9.0/ref/Canaa.dll
 /Canaa/obj/Debug/net9.0/refint/Canaa.dll
 /Canaa/obj/Debug/net9.0/apphost.exe
@@ -163,8 +156,7 @@ Canaa/appsettings.json
 /Canaa/obj/project.assets.json
 /Canaa/obj/project.nuget.cache
 /Canaa/obj/Debug/net9.0/Canaa.assets.cache
-/Canaa/bin/Debug/net9.0/ffmpeg
-/Canaa/bin/Debug/net9.0/Canaa.deps.json
+
 /Canaa/bin/Release/net9.0/Canaa.deps.json
 /Canaa/obj/Debug/net9.0/EndpointInfo
 /Canaa/obj/Release/net9.0/PubTmp/Out/Canaa.deps.json
@@ -190,3 +182,25 @@ Canaa/appsettings.json
 /Canaa.DataContracts/obj/Release/net9.0/Canaa.DataContracts.AssemblyInfo.cs
 /Canaa.DataContracts/bin/Release/net9.0/Canaa.DataContracts.deps.json
 /Canaa.DataContracts/obj/Release/net9.0/Canaa.DataContracts.assets.cache
+/.vs/API/v17
+/Canaa/.vs/Canaa
+/Canaa/obj/Debug/net9.0/staticwebassets.build.json
+/.gitignore
+
+
+/Canaa/bin/Debug/net9.0/
+
+
+/Canaa.FN.BusinessComponents/obj/Canaa.FN.BusinessComponents.csproj.nuget.g.props
+/Canaa.FN.BusinessComponents/obj/Debug/net9.0/Canaa.FN.BusinessComponents.GeneratedMSBuildEditorConfig.editorconfig
+/Canaa.Infra.ExternalServices/obj/Debug/net9.0/Canaa.Infra.ExternalServices.GeneratedMSBuildEditorConfig.editorconfig
+/Canaa.Infra.ExternalServices/obj/Debug/net9.0/Canaa.Infra.ExternalServices.genruntimeconfig.cache
+/Canaa.Infra.ExternalServices/obj/Canaa.Infra.ExternalServices.csproj.nuget.g.props
+/Canaa.DataContracts/obj/Debug/net9.0/Canaa.DataContracts.GeneratedMSBuildEditorConfig.editorconfig
+/Canaa.DataContracts/obj/Canaa.DataContracts.csproj.nuget.g.props
+/Canaa/obj/Debug/net9.0/Canaa.GeneratedMSBuildEditorConfig.editorconfig
+/Canaa/obj/Debug/net9.0/Canaa.genruntimeconfig.cache
+/Canaa/obj/Debug/net9.0/Canaa.MvcApplicationPartsAssemblyInfo.cs
+/Canaa/obj/Debug/net9.0/staticwebassets.build.endpoints.json
+/Canaa/obj/Canaa.csproj.nuget.g.props
+*.env
