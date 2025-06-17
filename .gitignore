@@ -210,3 +210,4 @@ Canaa/appsettings.json
 /Canaa.Infra.ExternalServices/obj/Debug/net8.0
 /Canaa.Infra.ExternalServices/obj/Canaa.Infra.ExternalServices.csproj.nuget.g.targets
 /Canaa/obj/Canaa.csproj.nuget.g.targets
+/Canaa.Infra.Entities/obj
