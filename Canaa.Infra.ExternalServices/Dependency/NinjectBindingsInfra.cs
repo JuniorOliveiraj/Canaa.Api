@@ -1,9 +1,9 @@
-﻿using Canaa.DataContracts.Auth.Context;
-using Canaa.Infra.ExternalServices.Context;
+﻿using Canaa.DataContracts.Auth.Context; 
 using Canaa.Infra.ExternalServices.Query.QueryFunciotosQ;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Ninject;
+using Ninject.Web.Common;
 
 namespace Canaa.Infra.ExternalServices.Dependency
 {
@@ -11,9 +11,9 @@ namespace Canaa.Infra.ExternalServices.Dependency
     {
         public static void Register(IKernel kernel)
         {
-            kernel.Bind<ITodasFuncoesQuery>().To<TodasFuncoesQuery>();
-            kernel.Bind<IUserContext>().To<UserContext>(); // Adicione isso aqui
+            kernel.Bind<ITodasFuncoesQuery>().To<TodasFuncoesQuery>(); 
             kernel.Bind<IHttpContextAccessor>().To<HttpContextAccessor>();
+            kernel.Bind<IUserContext>().To<UserContext>().InRequestScope();
             kernel.Bind<IConfiguration>().ToMethod(ctx =>
             {
                 var configBuilder = new ConfigurationBuilder()
@@ -31,6 +31,7 @@ namespace Canaa.Infra.ExternalServices.Dependency
                     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                     .Build();
             }).InSingletonScope();
+
 
         }
     }

@@ -6,6 +6,7 @@ using Canaa.FN.BusinessComponents.Midia.Audio;
 using Canaa.FN.BusinessComponents.Midia.Video.CriarVideos;
 using Canaa.FN.BusinessComponents.Midia.Video.Youtube;
 using Canaa.FN.BusinessComponents.Response;
+using Canaa.FN.BusinessComponents.Usuarios;
 using Ninject;
 
 
@@ -21,6 +22,7 @@ namespace Canaa.Ninject
            
             //Auth 
             kernel.Bind<IAuthContaUsuario>().To<AuthContaUsuario>();
+            kernel.Bind<IUsuariosBusiness>().To<UsuariosBusiness>();
 
             //Gastos
             kernel.Bind<ITotalGastos>().To<TotalGastos>();

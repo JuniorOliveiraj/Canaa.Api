@@ -1,0 +1,13 @@
+F:\DOTNET\API\Canaa.DataContracts\bin\Release\net8.0\Canaa.DataContracts.deps.json
+F:\DOTNET\API\Canaa.DataContracts\bin\Release\net8.0\Canaa.DataContracts.dll
+F:\DOTNET\API\Canaa.DataContracts\bin\Release\net8.0\Canaa.DataContracts.pdb
+F:\DOTNET\API\Canaa.DataContracts\obj\Release\net8.0\Canaa.DataContracts.csproj.AssemblyReference.cache
+F:\DOTNET\API\Canaa.DataContracts\obj\Release\net8.0\Canaa.DataContracts.GeneratedMSBuildEditorConfig.editorconfig
+F:\DOTNET\API\Canaa.DataContracts\obj\Release\net8.0\Canaa.DataContracts.AssemblyInfoInputs.cache
+F:\DOTNET\API\Canaa.DataContracts\obj\Release\net8.0\Canaa.DataContracts.AssemblyInfo.cs
+F:\DOTNET\API\Canaa.DataContracts\obj\Release\net8.0\Canaa.DataContracts.csproj.CoreCompileInputs.cache
+F:\DOTNET\API\Canaa.DataContracts\obj\Release\net8.0\Canaa.DataContracts.sourcelink.json
+F:\DOTNET\API\Canaa.DataContracts\obj\Release\net8.0\Canaa.DataContracts.dll
+F:\DOTNET\API\Canaa.DataContracts\obj\Release\net8.0\refint\Canaa.DataContracts.dll
+F:\DOTNET\API\Canaa.DataContracts\obj\Release\net8.0\Canaa.DataContracts.pdb
+F:\DOTNET\API\Canaa.DataContracts\obj\Release\net8.0\ref\Canaa.DataContracts.dll

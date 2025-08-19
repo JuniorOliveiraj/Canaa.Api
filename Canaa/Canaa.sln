@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens
 		.env = .env
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Canaa.Infra.Entities", "..\Canaa.Infra.Entities\Canaa.Infra.Entities.csproj", "{BF587D11-A9FC-4539-AF7B-FD3D372A8697}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,10 @@ Global
 		{AC79DC17-A97A-4BBD-830C-4A83406D9852}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC79DC17-A97A-4BBD-830C-4A83406D9852}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC79DC17-A97A-4BBD-830C-4A83406D9852}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF587D11-A9FC-4539-AF7B-FD3D372A8697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF587D11-A9FC-4539-AF7B-FD3D372A8697}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF587D11-A9FC-4539-AF7B-FD3D372A8697}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF587D11-A9FC-4539-AF7B-FD3D372A8697}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{4A1692BF-4F29-43C3-B40A-F56B19092832} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{14E05AA2-22DB-401A-878D-4491D0D1AC7C} = {B6C1C7EC-D26F-4AF6-8E5C-F07677FD1D46}
 		{AC79DC17-A97A-4BBD-830C-4A83406D9852} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{BF587D11-A9FC-4539-AF7B-FD3D372A8697} = {B6C1C7EC-D26F-4AF6-8E5C-F07677FD1D46}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0EB47AB5-AD3B-4EA9-B854-B482A630ECDC}

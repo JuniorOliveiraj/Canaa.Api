@@ -1,5 +1,6 @@
 ﻿using Canaa.AppHost.utils;
 using Canaa.FN.BusinessComponents.Response;
+using Canaa.FN.BusinessComponents.Usuarios;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +30,18 @@ namespace Canaa.Midias.Tarefas
             return Ok(response);
 
         }
+        [HttpGet]
+        [Route("Usuarios2")]
+        public async Task<IActionResult> Usuarios()
+        {
+            
+
+            var tarefasComponent = BusinessComponent.CreateInstance<IControleTarefas>();
+            var response = await tarefasComponent.BuscarPorIdAsync(9);
+
+            return Ok(response); 
+        }
+
 
     }
 }
