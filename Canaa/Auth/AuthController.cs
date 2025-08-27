@@ -49,7 +49,14 @@ public class AuthController : ControllerBase
             loginResult.Email,
             loginResult.Senha
         );
-        TokenStore.TokensPorUsuario[loginResult.Id.ToString()] = jti;
+
+        if (!TokenStore.TokensPorUsuario.ContainsKey(loginResult.Id.ToString()))
+        {
+            TokenStore.TokensPorUsuario[loginResult.Id.ToString()] = new List<string>();
+        }
+
+        TokenStore.TokensPorUsuario[loginResult.Id.ToString()].Add(jti);
+
 
         return Ok(new { token });
     }
@@ -80,7 +87,13 @@ public class AuthController : ControllerBase
             createResult.Email,
             createResult.Senha
         );
-        TokenStore.TokensPorUsuario[createResult.Id.ToString()] = jti;
+        if (!TokenStore.TokensPorUsuario.ContainsKey(createResult.Id.ToString()))
+        {
+            TokenStore.TokensPorUsuario[createResult.Id.ToString()] = new List<string>();
+        }
+
+        TokenStore.TokensPorUsuario[createResult.Id.ToString()].Add(jti);
+
 
         return Ok(new { 
             Ok = "Ok",
@@ -115,10 +128,23 @@ public class AuthController : ControllerBase
             loginResult.Email,
             loginResult.Email
         );
-        TokenStore.TokensPorUsuario[loginResult.Id.ToString()] = jti;
+ 
+
+        if (!TokenStore.TokensPorUsuario.ContainsKey(loginResult.Id.ToString()))
+        {
+            TokenStore.TokensPorUsuario[loginResult.Id.ToString()] = new List<string>();
+        }
+
+        TokenStore.TokensPorUsuario[loginResult.Id.ToString()].Add(jti);
 
         return Ok(new { token });
     }
+
+    public static class TokenStore
+    {
+        public static Dictionary<string, List<string>> TokensPorUsuario = new();
+    }
+
     public class ParamUser
     {
         public string Email { get; set; }
