@@ -7,6 +7,6 @@ namespace Canaa.FN.BusinessComponents.Response
         ResponseDataContrac GetTarefasPendentes();
         List<Dictionary<string, object>> tabela();
 
-        Task<Z_USUARIO> BuscarPorIdAsync(int id);
+        Task<Z_USUARIO> BuscarPorIdAsync();
     }
 }

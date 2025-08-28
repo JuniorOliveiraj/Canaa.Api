@@ -1,17 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Microsoft.AspNetCore.Authorization;
-using Canaa.AppHost.utils;
+﻿using Canaa.AppHost.utils;
+using Canaa.Auth;
 using Canaa.DataContracts.Auth;
 using Canaa.FN.BusinessComponents.Auth;
-using Canaa.Auth;
+using Canaa.FN.BusinessComponents.Response;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 public static class TokenStore
 {
-    public static Dictionary<string, string> TokensPorUsuario = new();
+     public static Dictionary<string, List<string>> TokensPorUsuario = new();
 }
 
 [ApiController]
@@ -39,9 +36,7 @@ public class AuthController : ControllerBase
         var loginResult = loginComponent.Login(credentials);
 
         if (!loginResult?.Autorizado ?? true)
-        {
             return Unauthorized();
-        }
 
         var tokenGenerator = new GerarToken(_config);
         var (token, jti) = tokenGenerator.GetToken(
@@ -51,18 +46,12 @@ public class AuthController : ControllerBase
         );
 
         if (!TokenStore.TokensPorUsuario.ContainsKey(loginResult.Id.ToString()))
-        {
             TokenStore.TokensPorUsuario[loginResult.Id.ToString()] = new List<string>();
-        }
 
         TokenStore.TokensPorUsuario[loginResult.Id.ToString()].Add(jti);
 
-
         return Ok(new { token });
     }
-
-
-
 
     [AllowAnonymous]
     [HttpPost("CriarConta")]
@@ -75,34 +64,33 @@ public class AuthController : ControllerBase
             Senha = param.Senha,
             Nome = param.Nome
         };
+
         var createnComponent = BusinessComponent.CreateInstance<IAuthContaUsuario>();
         var createResult = createnComponent.CriarConta(credentials);
-        if (createResult?.Mensage != null &&!createResult.Autorizado)
-        {
+
+        if (createResult?.Mensage != null && !createResult.Autorizado)
             return BadRequest(new { Mensage = createResult.Mensage });
-        }
+
         var tokenGenerator = new GerarToken(_config);
         var (token, jti) = tokenGenerator.GetToken(
             createResult.Id.ToString(),
             createResult.Email,
             createResult.Senha
         );
+
         if (!TokenStore.TokensPorUsuario.ContainsKey(createResult.Id.ToString()))
-        {
             TokenStore.TokensPorUsuario[createResult.Id.ToString()] = new List<string>();
-        }
 
         TokenStore.TokensPorUsuario[createResult.Id.ToString()].Add(jti);
 
-
-        return Ok(new { 
+        return Ok(new
+        {
             Ok = "Ok",
             sucess = true,
             id = createResult.Id,
             token = token,
         });
     }
- 
 
     [AllowAnonymous]
     [HttpGet("Liberado")]
@@ -118,9 +106,7 @@ public class AuthController : ControllerBase
         var loginResult = loginComponent.Login(credentials);
 
         if (!loginResult?.Autorizado ?? true)
-        {
             return Unauthorized();
-        }
 
         var tokenGenerator = new GerarToken(_config);
         var (token, jti) = tokenGenerator.GetToken(
@@ -128,21 +114,23 @@ public class AuthController : ControllerBase
             loginResult.Email,
             loginResult.Email
         );
- 
 
         if (!TokenStore.TokensPorUsuario.ContainsKey(loginResult.Id.ToString()))
-        {
             TokenStore.TokensPorUsuario[loginResult.Id.ToString()] = new List<string>();
-        }
 
         TokenStore.TokensPorUsuario[loginResult.Id.ToString()].Add(jti);
 
         return Ok(new { token });
     }
 
-    public static class TokenStore
+    [Authorize]
+    [HttpGet("meusDados")]
+    public async Task<IActionResult> Usuarios()
     {
-        public static Dictionary<string, List<string>> TokensPorUsuario = new();
+        var tarefasComponent = BusinessComponent.CreateInstance<IControleTarefas>();
+        var response = await tarefasComponent.BuscarPorIdAsync();
+
+        return Ok(response);
     }
 
     public class ParamUser
@@ -150,10 +138,6 @@ public class AuthController : ControllerBase
         public string Email { get; set; }
         public string Senha { get; set; }
         public string? NomeUsuario { get; set; }
-        public string? Nome  { get; set; }
+        public string? Nome { get; set; }
     }
-
 }
-
-
-

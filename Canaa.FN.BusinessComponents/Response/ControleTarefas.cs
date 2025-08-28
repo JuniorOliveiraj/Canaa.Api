@@ -1,6 +1,7 @@
 ﻿using AngleSharp.Dom;
 using Canaa.AppHost.utils.Query;
 using Canaa.DataContracts.Videos;
+using Canaa.FN.BusinessComponents.Utils;
 using Canaa.Infra.Entities.Context;
 using Canaa.Infra.Entities.Entities;
 using Canaa.Infra.Entities.Tabelasbef;
@@ -20,9 +21,10 @@ namespace Canaa.FN.BusinessComponents.Response
 
 
 
-        public async Task<Z_USUARIO?> BuscarPorIdAsync(int id)
+        public async Task<Z_USUARIO?> BuscarPorIdAsync()
         {
-            var usuario = await ZUsuarios.GetFirstOrDefault(new Criteria("ID", id));
+            int usuarioId =  CanaaContext.GetUserId(); 
+            var usuario = await ZUsuarios.GetFirstOrDefault(new Criteria("ID", usuarioId));
             return usuario;
         }
         public ResponseDataContrac GetTarefasPendentes()
