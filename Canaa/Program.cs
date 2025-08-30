@@ -18,23 +18,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
-    serverOptions.ListenAnyIP(5000);
-
-    /* serverOptions.ListenAnyIP(5001, listenOptions =>
-     {
-         listenOptions.UseHttps(); // Habilita HTTPS
-     });*/
-
     serverOptions.Limits.MinRequestBodyDataRate = new MinDataRate(
-    bytesPerSecond: 100, 
-    gracePeriod: TimeSpan.FromSeconds(10) 
-);
+        bytesPerSecond: 100,
+        gracePeriod: TimeSpan.FromSeconds(10)
+    );
 });
+
 // Program.cs (para .NET 6 ou superior)
 
- builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();//
-  
- 
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();//
+
+
 
 Config.Init(builder.Configuration);
 
@@ -60,12 +54,13 @@ NinjectBindingsInfraEntitis.Register(kernel);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowFrontendClients", // <-- este nome
+    options.AddPolicy("AllowFrontendClients", 
         policy =>
         {
             policy.WithOrigins(
-                "http://localhost:3000",
-                "https://www.juniorbelem.com"
+                "http://localhost:5000",           
+                "http://152.67.61.114:5000",
+                "https://app.juniorbelem.com"
             )
             .AllowAnyHeader()
             .AllowAnyMethod();
@@ -92,7 +87,7 @@ app.UseCors("AllowFrontendClients");
 ////
 ///
 
- 
+
 
 
 if (app.Environment.IsDevelopment())
