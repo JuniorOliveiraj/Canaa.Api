@@ -1,5 +1,4 @@
-Canaa.Infra.ExternalServices/appsettings.json
-Canaa/appsettings.json
+ 
 
 
 /Canaa/.vs/Canaa/CopilotIndices/17.13.433.20974/CodeChunks.db
@@ -64,8 +63,8 @@ Canaa/appsettings.json
 /Canaa.Infra.ExternalServices/bin/Debug/net9.0/Canaa.Infra.ExternalServices.pdb
 /Canaa.Infra.ExternalServices/obj/Debug/net9.0/Canaa.Infra.ExternalServices.dll
 /Canaa.Infra.ExternalServices/obj/Debug/net9.0/Canaa.Infra.ExternalServices.pdb
-/Canaa/appsettings.json
-/Canaa.Infra.ExternalServices/appsettings.json
+
+
 /Canaa/obj/Release/net9.0/PubTmp/Out/appsettings.json
 /Canaa/obj/Release/net9.0/PubTmp/Out/Canaa.DataContracts.dll
 /Canaa/obj/Release/net9.0/PubTmp/Out/Canaa.DataContracts.pdb
