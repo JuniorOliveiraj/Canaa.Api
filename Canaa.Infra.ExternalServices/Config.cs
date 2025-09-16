@@ -20,14 +20,27 @@ namespace Canaa.AppHost.utils
 
         public static IConfigurationRoot Build()
         {
+            if (_configuration != null)
+            {
+                // Converte IConfiguration em IConfigurationRoot para compatibilidade
+                return new ConfigurationBuilder()
+                    .AddConfiguration(_configuration)
+                    .Build();
+            }
+
+            // Fallback caso _configuration não esteja inicializado
             return new ConfigurationBuilder()
                 .SetBasePath(AppContext.BaseDirectory)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .Build();
         }
 
+
         public static string GetConnectionString()
         {
+            var DefaultConnection = Build().GetConnectionString("DefaultConnection");
+
+
             return Build().GetConnectionString("DefaultConnection");
         }
     }

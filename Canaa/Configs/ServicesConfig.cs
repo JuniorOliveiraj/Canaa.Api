@@ -7,12 +7,16 @@ namespace Canaa.Configs
     {
         public static void Configure(IServiceCollection services, IConfiguration config)
         {
+            var connectionString = config.GetConnectionString("DefaultConnection");
+
             services.AddDbContext<AppDbContext>(options =>
-                options.UseMySql(config.GetConnectionString("DefaultConnection"),
-                ServerVersion.AutoDetect(config.GetConnectionString("DefaultConnection"))));
+                options.UseMySql(connectionString,
+                ServerVersion.AutoDetect(connectionString))
+            );
 
             services.AddControllers();
             services.AddEndpointsApiExplorer();
         }
+
     }
 }

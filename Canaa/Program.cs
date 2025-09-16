@@ -12,9 +12,13 @@ using Canaa.Ninject;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Ninject;
+using DotNetEnv;
 
-
+Env.Load();
 var builder = WebApplication.CreateBuilder(args);
+
+
+
 
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
@@ -24,13 +28,24 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
     );
 });
 
-// Program.cs (para .NET 6 ou superior)
 
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();//
+builder.Configuration.AddEnvironmentVariables();
+
+
+
+builder.Configuration["ConnectionStrings:DefaultConnection"] = Env.GetString("ConnectionStrings__DefaultConnection");
+builder.Configuration["Jwt:Key"] = Env.GetString("Jwt__Key");
+builder.Configuration["Jwt:Issuer"] = Env.GetString("Jwt__Issuer");
+builder.Configuration["Jwt:Audience"] = Env.GetString("Jwt__Audience");
 
 
 
 Config.Init(builder.Configuration);
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
+
 
 
 ServicesConfig.Configure(builder.Services, builder.Configuration);
