@@ -72,10 +72,11 @@ namespace Canaa.AppHost.utils.Query
 
         private string ProcessCommandText(string commandText, out List<KeyValuePair<string, object>> processedParams)
         {
-            // Primeiro, processa as funções tipo @NOW(), @RANDOM(), etc
             var gstosComponent = BusinessComponentInfra.CreateInstance<ITodasFuncoesQuery>();
-
             string processed = gstosComponent.RetunCommand(commandText);
+
+            // 🔧 Remove RETURNING ... INTO ... (incompatível com MySQL)
+            processed = Regex.Replace(processed, @"RETURNING\s+\w+\s+INTO\s+:\w+", "", RegexOptions.IgnoreCase);
 
             processedParams = new();
 
@@ -92,7 +93,6 @@ namespace Canaa.AppHost.utils.Query
                         processedParams.Add(new KeyValuePair<string, object>(mysqlParamName, item));
                     }
 
-                    // Substitui :NOME por múltiplos @NOME0,@NOME1,...
                     processed = Regex.Replace(
                         processed,
                         $@":{param.Name}\b",
@@ -102,20 +102,19 @@ namespace Canaa.AppHost.utils.Query
                 else
                 {
                     var mysqlParamName = $"@{param.Name}";
-
-                    // Substitui :NOME por @NOME
                     processed = Regex.Replace(
                         processed,
                         $@":{param.Name}\b",
                         mysqlParamName
                     );
-
                     processedParams.Add(new KeyValuePair<string, object>(mysqlParamName, param.Value));
                 }
             }
 
             return processed;
         }
+
+
 
 
         private void AddParametersToCommand(MySqlCommand command, List<KeyValuePair<string, object>> parameters)

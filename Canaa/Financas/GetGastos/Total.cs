@@ -18,7 +18,7 @@ namespace Canaa.Financas.GetGastos
         {
             var gstosComponent = BusinessComponent.CreateInstance<ITotalGastos>();
             return Ok(gstosComponent.Total());
-        }
+        } 
 
         [AllowAnonymous]
         [HttpGet("Gastos-public")]
