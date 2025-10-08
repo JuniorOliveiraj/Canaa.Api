@@ -15,9 +15,11 @@ namespace Canaa.FN.BusinessComponents.Financas.Buscar.Gastos
                 YEAR(data) = @ANO AND 
                 MONTH(data) = @MES
                 AND STATUS <> :STATUS");
-            query.AddParameter(new Parameter("STATUS", StatusGastos.Inativo));
+            query.AddParameter(new Parameter("STATUS", "Inativo"));
 
             var result = query.Execute().FirstOrDefault();
+
+    
 
             if (result != null && result.ContainsKey("Total"))
             {

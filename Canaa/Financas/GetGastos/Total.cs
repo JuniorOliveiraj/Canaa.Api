@@ -32,7 +32,7 @@ namespace Canaa.Financas.GetGastos
             {
                 total = total,
                 data = DateTime.Now.ToString("dd/MM/yyyy"),
-                poderaGuarda =   total - 1700,
+                poderaGuarda = 1700 - total ,
                 message = "Total de gastos"
             };
 
