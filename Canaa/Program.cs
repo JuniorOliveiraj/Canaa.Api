@@ -36,6 +36,7 @@ Config.Init(builder.Configuration);
 
 // Middlewares essenciais
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 ServicesConfig.Configure(builder.Services, builder.Configuration);
 JwtConfig.Configure(builder.Services, builder.Configuration);
 SwaggerConfig.Configure(builder.Services);
@@ -50,15 +51,21 @@ BusinessComponentInfra.Initialize(kernel);
 BusinessComponentInfraEntities.Initialize(kernel);
 NinjectBindingsInfraEntitis.Register(kernel);
 
-// 🚀 CORS (temporário: permite qualquer origem para teste)
+// CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", policy =>
-    {
-        policy.AllowAnyOrigin()
-              .AllowAnyHeader()
-              .AllowAnyMethod();
-    });
+    options.AddPolicy("AllowFrontendClients",
+        policy =>
+        {
+            policy.WithOrigins(
+                "http://localhost:5000",
+                "http://152.67.61.114:5000",
+                "https://app.juniorbelem.com",
+                "http://192.168.3.18:5000" // ADICIONE ISSO
+            )
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+        });
 });
 
 // DbContext
@@ -73,8 +80,8 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 // Build
 var app = builder.Build();
 
-// Usa CORS
-app.UseCors("AllowAll");
+// Usa CORS antes de Auth/Authorization
+app.UseCors("AllowFrontendClients");
 
 // Middlewares padrão
 if (app.Environment.IsDevelopment())
@@ -82,6 +89,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseAuthentication();
 app.UseAuthorization();
