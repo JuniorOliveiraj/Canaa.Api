@@ -75,7 +75,9 @@ builder.Services.AddCors(options =>
             policy.WithOrigins(
                 "http://localhost:5000",           
                 "http://152.67.61.114:5000",
-                "https://app.juniorbelem.com"
+                "https://app.juniorbelem.com",
+                "http://192.168.3.18:5000" // ADICIONE ISSO
+
             )
             .AllowAnyHeader()
             .AllowAnyMethod();
