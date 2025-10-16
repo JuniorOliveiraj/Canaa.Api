@@ -1,5 +1,4 @@
-﻿
-using Canaa.AppHost.utils;
+﻿using Canaa.AppHost.utils;
 using Canaa.Configs;
 using Canaa.DataContracts.Auth.Context;
 using Canaa.Infra.Entities.BefDb;
@@ -17,9 +16,7 @@ using DotNetEnv;
 Env.Load();
 var builder = WebApplication.CreateBuilder(args);
 
-
-
-
+// Configura Kestrel
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
     serverOptions.Limits.MinRequestBodyDataRate = new MinDataRate(
@@ -28,35 +25,23 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
     );
 });
 
-
+// Configura environment variables
 builder.Configuration.AddEnvironmentVariables();
-
-
-
 builder.Configuration["ConnectionStrings:DefaultConnection"] = Env.GetString("ConnectionStrings__DefaultConnection");
 builder.Configuration["Jwt:Key"] = Env.GetString("Jwt__Key");
 builder.Configuration["Jwt:Issuer"] = Env.GetString("Jwt__Issuer");
 builder.Configuration["Jwt:Audience"] = Env.GetString("Jwt__Audience");
 
-
-
 Config.Init(builder.Configuration);
 
+// Middlewares essenciais
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-
-
-
-
 ServicesConfig.Configure(builder.Services, builder.Configuration);
-
-
 JwtConfig.Configure(builder.Services, builder.Configuration);
-
 SwaggerConfig.Configure(builder.Services);
 TabelasConfig.Configure(builder.Services, builder.Configuration);
 
-
+// Ninject
 IKernel kernel = new StandardKernel();
 NinjectBindings.Register(kernel);
 BusinessComponent.Initialize(kernel);
@@ -65,25 +50,18 @@ BusinessComponentInfra.Initialize(kernel);
 BusinessComponentInfraEntities.Initialize(kernel);
 NinjectBindingsInfraEntitis.Register(kernel);
 
-
-
+// 🚀 CORS (temporário: permite qualquer origem para teste)
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowFrontendClients", 
-        policy =>
-        {
-            policy.WithOrigins(
-                "http://localhost:5000",           
-                "http://152.67.61.114:5000",
-                "https://app.juniorbelem.com",
-                "http://192.168.3.18:5000" // ADICIONE ISSO
-
-            )
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-        });
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
 });
 
+// DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(
         Config.GetConnectionString(),
@@ -92,29 +70,19 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 );
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseMySql(Config.GetConnectionString(), ServerVersion.AutoDetect(Config.GetConnectionString()))
-);
-
+// Build
 var app = builder.Build();
-app.UseCors("AllowFrontendClients");
 
-/////
-//  Ambiente de desenvolvimento
-////
-///
+// Usa CORS
+app.UseCors("AllowAll");
 
-
-
-
+// Middlewares padrão
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseSwagger();
-app.UseSwaggerUI();
-// Middlewares padrão
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
