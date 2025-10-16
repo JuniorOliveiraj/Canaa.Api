@@ -21,24 +21,47 @@ namespace Canaa.FN.BusinessComponents.Midia.Video.Youtube
             ResponseDataContrac response = new ResponseDataContrac();
             string _guid = Guid.NewGuid().ToString();
             ProgressService.InsertNewTask(_guid, "");
-            var videoPath = await YoutubeDownloader.DownloadVideoAsync(link, CanaaContext.DiretorioTemporario("Youtube"), _guid);
-            response.success = true;
 
-            if (videoPath == "Erro")
+            try
+            {
+                var videoPath = await YoutubeDownloader.DownloadVideoAsync(
+                    link,
+                    CanaaContext.DiretorioTemporario("Youtube"),
+                    _guid
+                );
+
+                if (videoPath == "Erro")
+                {
+                    response.success = false;
+                    response.error = BuscarErro(_guid);
+                }
+                else
+                {
+                    string url = CanaaContext.GetApiLocation();
+                    url += $"/v1/Arquivos/stream?caminho={videoPath}";
+                    response.data = new string[] { videoPath, url };
+                    response.success = true;
+                    response.message = "Vídeo baixado com sucesso!";
+                    ProgressService.UpdateTaskFilePath(_guid, videoPath);
+                    ProgressService.UpdateTaskFileUrl(_guid, url);
+                    ProgressService.SetTaskCategoria(_guid, TarefasCategorias.BaixarVideoYoutube);
+                    ProgressService.SetConcluido(_guid);
+                }
+            }
+            catch (YoutubeExplode.Exceptions.VideoUnavailableException)
             {
                 response.success = false;
-                response.error = BuscarErro(_guid);
+                response.error = "O vídeo não está disponível no YouTube.";
             }
-            string url = CanaaContext.GetApiLocation();
-            url += $"/v1/Arquivos/stream?caminho={videoPath}";
-            response.data = new string[] { videoPath, url };
-            response.message = "Video baixado com sucesso!";
-            ProgressService.UpdateTaskFilePath(_guid, videoPath);
-            ProgressService.UpdateTaskFileUrl(_guid, url);
-            ProgressService.SetTaskCategoria(_guid, TarefasCategorias.BaixarVideoYoutube);
-            ProgressService.SetConcluido(_guid);
+            catch (Exception ex)
+            {
+                response.success = false;
+                response.error = $"Erro ao baixar o vídeo: {ex.Message}";
+            }
+
             return response;
         }
+
 
         public async Task<ResponseDataContrac> BaixarLegendasYoutube(string link)
         {
