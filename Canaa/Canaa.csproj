@@ -27,6 +27,8 @@
 
   <ItemGroup>
     <Folder Include="Midias\Postagem\" />
+	<Content Include="Midias/jsons/EmpresasVagas.json" CopyToOutputDirectory="Always" />
+
   </ItemGroup>
 
 </Project>
