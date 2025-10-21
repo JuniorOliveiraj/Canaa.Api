@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <Folder Include="Midias\Postagem\" />
-	<Content Include="Midias/jsons/EmpresasVagas.json" CopyToOutputDirectory="Always" />
+    <Content Include="Midias/jsons/EmpresasVagas.json" CopyToOutputDirectory="Always" Condition="Exists('Midias/jsons/EmpresasVagas.json')" />
 
   </ItemGroup>
 
