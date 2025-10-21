@@ -21,9 +21,6 @@ COPY Canaa.FN.BusinessComponents/ Canaa.FN.BusinessComponents/
 COPY Canaa.Infra.Entities/ Canaa.Infra.Entities/
 COPY Canaa.Infra.ExternalServices/ Canaa.Infra.ExternalServices/
 
-# Opcional: garante explicitamente que o JSON está presente
-# COPY Canaa/Midias/jsons/EmpresasVagas.json /app/Canaa/Midias/jsons/EmpresasVagas.json
-
 # Build e publish
 RUN dotnet publish Canaa/Canaa.sln -c Release -o /app/publish
 
@@ -40,6 +37,9 @@ RUN apt-get update && \
 
 # Copia arquivos publicados
 COPY --from=build /app/publish .
+
+# Adiciona a pasta Midias para garantir que o JSON exista
+COPY Canaa/Midias /app/Midias
 
 # Porta padrão
 EXPOSE 80
