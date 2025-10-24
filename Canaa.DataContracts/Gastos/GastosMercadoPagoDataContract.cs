@@ -17,4 +17,14 @@ namespace Canaa.DataContracts.Gastos
         public StatusGastos? status { get; set; }
 
     }
+    public class TotalComUltimosGastos
+    {
+        public gastoTotalMercadoPago total{ get; set; }
+        public List<GastosMercadoPagoDataContract>? ultimoGastos { get; set; }
+    }
+
+    public class gastoTotalMercadoPago
+    {
+        public double totalGastosMP { get; set; }
+    }
 }

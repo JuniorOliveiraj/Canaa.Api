@@ -38,5 +38,28 @@ namespace Canaa.Financas.GetGastos
 
             return Ok(response);
         }
+
+
+
+        [AllowAnonymous]
+        [HttpGet("ultimosgastos-public")]
+        public IActionResult UltimosGastosPublico()
+        {
+            var gstosComponent = BusinessComponent.CreateInstance<ITotalGastos>();
+
+            var total = gstosComponent.RetornarTotalComUltimosGastos();
+
+            var response = new
+            {
+                dados = total,
+                data = DateTime.Now.ToString("dd/MM/yyyy"),
+
+            };
+
+            return Ok(response);
+        }
+
+
+
     }
 }
