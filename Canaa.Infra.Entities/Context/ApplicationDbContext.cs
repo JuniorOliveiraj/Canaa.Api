@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Canaa.Infra.Entities.Entities;
+using Canaa.Infra.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
 
@@ -32,6 +33,7 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<categorias_compra> categorias_compras { get; set; }
 
     public virtual DbSet<compras_cartao> compras_cartaos { get; set; }
+    public virtual DbSet<ContatosEmail> ContatosEmail { get; set; }
 
     public virtual DbSet<draw> draws { get; set; }
 
@@ -75,7 +77,7 @@ public partial class ApplicationDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=152.67.53.206;port=3306;database=CANAA.DEV;uid=dev;pwd=Oliveira1012", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.42-mysql"));
+        => optionsBuilder.UseMySql(Config.GetConnectionString(), Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.42-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

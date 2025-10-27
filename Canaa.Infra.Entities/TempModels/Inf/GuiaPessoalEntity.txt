@@ -1,0 +1,19 @@
+﻿
+
+#criar todos os models na pasta temporaria
+
+dotnet ef dbcontext scaffold `
+"server=gondola.proxy.rlwy.net;port=58135;database=CANAA_DEV;uid=root;pwd=fNAlqnyGCYzGHSYCcpbhSDpVypFHwhIl" `
+Pomelo.EntityFrameworkCore.MySql `
+--output-dir TempModels `
+--no-onconfiguring `
+--no-pluralize `
+--data-annotations
+
+
+
+2
+mover apenas a tabela desejana para  a pastas do Entityes
+
+
+3 adicionar no arquivo  ApplicationDbContext.cs

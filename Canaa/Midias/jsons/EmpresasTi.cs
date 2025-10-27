@@ -1,10 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Canaa.AppHost.utils;
+using Canaa.FN.BusinessComponents.Usuarios;
+using Canaa.Infra.Entities.Entities;
+using Canaa.Infra.Entities.Context; // Certifique-se de usar o namespace do seu DbContext
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Canaa.Infra.ExternalServices.Utils;
 
 namespace Canaa.Midias.jsons
 {
@@ -13,21 +18,13 @@ namespace Canaa.Midias.jsons
     public class EmpresasTi : ControllerBase
     {
         private readonly IWebHostEnvironment _env;
+        private readonly ApplicationDbContext _context;
 
-        public EmpresasTi(IWebHostEnvironment env)
+        public EmpresasTi(IWebHostEnvironment env, ApplicationDbContext context)
         {
             _env = env;
+            _context = context;
         }
-
-        /*
-         PSEUDOCÓDIGO (plano detalhado):
-         - Construir caminho absoluto do arquivo EmpresasVagas.json usando _env.ContentRootPath + "Midias/jsons/EmpresasVagas.json".
-         - Verificar se o arquivo existe; se não existir, retornar NotFound (404) com mensagem.
-         - Ler o conteúdo do arquivo de forma assíncrona (ReadAllTextAsync).
-         - Tentar desserializar para um objeto genérico (apenas para validar o JSON).
-         - Retornar o JSON original como ContentResult com content-type "application/json".
-         - Em caso de erro de desserialização, retornar 500 com mensagem de erro.
-        */
 
         [HttpGet]
         [Route("todas")]
@@ -56,5 +53,67 @@ namespace Canaa.Midias.jsons
                 return StatusCode(500, new { error = "Conteúdo JSON inválido em EmpresasVagas.json." });
             }
         }
+
+        [HttpGet]
+        [Route("contatos")]
+        public async Task<IActionResult> GetContatos()
+        {
+            var component = BusinessComponent.CreateInstance<IUsuariosBusiness>();
+            var email = await component.BuscarTodosContatosEmail();
+            return new ContentResult
+            {
+                Content = email.ToString(),
+                ContentType = "application/json; charset=utf-8",
+                StatusCode = 200
+            };
+        }
+
+        [HttpPost]
+        [Route("inserir-contatos")]
+        public async Task<IActionResult> InserirContatos()
+        {
+            try
+            {
+                var listaParaInserir = await PrepararContatosEmailParaInserirAsync();
+
+                if (string.IsNullOrEmpty(listaParaInserir))
+                    return BadRequest(new { message = "Nenhum registro válido para inserir." });
+                 
+              // var component = BusinessComponent.CreateInstance<IUsuariosBusiness>();
+                // var resultado = await component.InserirContatosEmailDoJson(listaParaInserir);
+
+                return Ok(new { message = "nao esta funcionando " });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = "Erro ao inserir registros no banco.", details = ex.Message });
+            }
+        }
+
+        private async Task<string> PrepararContatosEmailParaInserirAsync()
+        {
+
+            try
+            {
+                var filePath = Path.Combine(_env.ContentRootPath, "Midias", "jsons", "EmpresasVagas.json");
+
+                if (!System.IO.File.Exists(filePath))
+                {
+                    Console.WriteLine($"Arquivo não encontrado: {filePath}");
+                    return string.Empty;
+                }
+
+                var json = await System.IO.File.ReadAllTextAsync(filePath);
+                return json;
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao processar JSON: {ex.Message}");
+                return string.Empty;
+            }
+        }
     }
+
+ 
 }

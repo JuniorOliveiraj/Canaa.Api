@@ -41,6 +41,7 @@ builder.Configuration["Jwt:Audience"] = Env.GetString("Jwt__Audience");
 
 
 Config.Init(builder.Configuration);
+Canaa.Infra.Entities.Config.Init(builder.Configuration);
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
