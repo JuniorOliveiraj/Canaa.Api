@@ -98,7 +98,7 @@ namespace Canaa.Infra.ExternalServices.Youtube
 
             var conversionRequest = new ConversionRequestBuilder(outputPath)
                 .SetPreset(ConversionPreset.Fast)
-                .SetFFmpegPath("ffmpeg") // Certifique-se de que o FFmpeg está no PATH
+                .SetFFmpegPath("/usr/bin/ffmpeg") // Certifique-se de que o FFmpeg está no PATH
                 .Build();
             var streams = new IStreamInfo[] { videoStream, audioStream };  // Tipo explícito
 
