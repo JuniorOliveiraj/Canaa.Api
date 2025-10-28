@@ -75,7 +75,7 @@ namespace Canaa.Midias.jsons
                 if (string.IsNullOrEmpty(listaParaInserir))
                     return BadRequest(new { message = "Nenhum registro válido para inserir." });
                  
-              /var component = BusinessComponent.CreateInstance<IUsuariosBusiness>();
+              //var component = BusinessComponent.CreateInstance<IUsuariosBusiness>();
                 // var resultado = await component.InserirContatosEmailDoJson(listaParaInserir);
 
                 return Ok(new { message = "nao esta funcionando " });
