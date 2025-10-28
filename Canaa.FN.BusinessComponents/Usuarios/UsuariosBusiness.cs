@@ -127,7 +127,7 @@ namespace Canaa.FN.BusinessComponents.Usuarios
                 {
                     NomeEmpresa = nomeEmpresa,
                     SiteLink = siteLink,
-                    Imagem = imagem,
+                    Imagem = "https://www.seprosc.com.br/"+imagem,
                     Dominio = dominio,
                     EmailPrincipal = emailRh,
                     EmailComercial = emailRh.Replace("rh@", "contato@"),

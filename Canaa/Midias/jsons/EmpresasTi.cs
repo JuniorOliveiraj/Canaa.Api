@@ -59,13 +59,9 @@ namespace Canaa.Midias.jsons
         public async Task<IActionResult> GetContatos()
         {
             var component = BusinessComponent.CreateInstance<IUsuariosBusiness>();
-            var email = await component.BuscarTodosContatosEmail();
-            return new ContentResult
-            {
-                Content = email.ToString(),
-                ContentType = "application/json; charset=utf-8",
-                StatusCode = 200
-            };
+            var emails = await component.BuscarTodosContatosEmail();
+            return Ok(emails); // Automatically serializes to JSON
+
         }
 
         [HttpPost]
@@ -79,7 +75,7 @@ namespace Canaa.Midias.jsons
                 if (string.IsNullOrEmpty(listaParaInserir))
                     return BadRequest(new { message = "Nenhum registro válido para inserir." });
                  
-              // var component = BusinessComponent.CreateInstance<IUsuariosBusiness>();
+              /var component = BusinessComponent.CreateInstance<IUsuariosBusiness>();
                 // var resultado = await component.InserirContatosEmailDoJson(listaParaInserir);
 
                 return Ok(new { message = "nao esta funcionando " });
