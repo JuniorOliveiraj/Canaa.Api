@@ -22,13 +22,11 @@ namespace Canaa.AppHost.utils
         {
             if (_configuration != null)
             {
-                // Converte IConfiguration em IConfigurationRoot para compatibilidade
                 return new ConfigurationBuilder()
                     .AddConfiguration(_configuration)
                     .Build();
             }
 
-            // Fallback caso _configuration não esteja inicializado
             return new ConfigurationBuilder()
                 .SetBasePath(AppContext.BaseDirectory)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)

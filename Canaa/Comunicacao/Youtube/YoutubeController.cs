@@ -6,7 +6,7 @@ using Canaa.Infra.ExternalServices.Youtube;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Canaa.Youtube
+namespace Canaa.Comunicacao.Youtube
 {
     [ApiController]
     [Route("v1/[controller]")]

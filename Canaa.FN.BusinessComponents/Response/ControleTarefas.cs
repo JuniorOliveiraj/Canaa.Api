@@ -24,7 +24,7 @@ namespace Canaa.FN.BusinessComponents.Response
         public async Task<Z_USUARIO?> BuscarPorIdAsync()
         {
             int usuarioId =  CanaaContext.GetUserId(); 
-            var usuario = await ZUsuarios.GetFirstOrDefault(new Criteria("ID", usuarioId));
+            var usuario =  ZUsuarios.GetFirstOrDefault(new Criteria("ID", usuarioId));
             return usuario;
         }
         public ResponseDataContrac GetTarefasPendentes()

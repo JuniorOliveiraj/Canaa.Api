@@ -31,12 +31,12 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 
 builder.Configuration.AddEnvironmentVariables();
 
-
-
 builder.Configuration["ConnectionStrings:DefaultConnection"] = Env.GetString("ConnectionStrings__DefaultConnection");
 builder.Configuration["Jwt:Key"] = Env.GetString("Jwt__Key");
 builder.Configuration["Jwt:Issuer"] = Env.GetString("Jwt__Issuer");
 builder.Configuration["Jwt:Audience"] = Env.GetString("Jwt__Audience");
+builder.Configuration["Resend:ApiKey"]  = Env.GetString("api__key");
+
 
 
 
@@ -44,21 +44,16 @@ Config.Init(builder.Configuration);
 Canaa.Infra.Entities.Config.Init(builder.Configuration);
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+IKernel kernel = new StandardKernel();
 
-
-
-
-
+//services
 ServicesConfig.Configure(builder.Services, builder.Configuration);
-
-
 JwtConfig.Configure(builder.Services, builder.Configuration);
-
 SwaggerConfig.Configure(builder.Services);
 TabelasConfig.Configure(builder.Services, builder.Configuration);
+EmailConfig.Configure(builder.Services, builder.Configuration);
 
 
-IKernel kernel = new StandardKernel();
 NinjectBindings.Register(kernel);
 BusinessComponent.Initialize(kernel);
 NinjectBindingsInfra.Register(kernel);

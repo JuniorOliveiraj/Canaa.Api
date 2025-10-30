@@ -4,7 +4,7 @@ using Canaa.DataContracts.Whatsapp;
 using Canaa.Infra.ExternalServices.Whatsapp;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using static Canaa.WhatsApp.WhatsappController;
+using static Canaa.Comunicacao.WhatsApp.WhatsappController;
 
 namespace Canaa.WorkFlow.Marmitas
 {

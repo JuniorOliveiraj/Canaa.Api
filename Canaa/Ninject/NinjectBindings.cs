@@ -1,6 +1,7 @@
 ﻿
 using Canaa.FN.BusinessComponents.Adicionar.AdicionarGastos;
 using Canaa.FN.BusinessComponents.Auth;
+using Canaa.FN.BusinessComponents.Email;
 using Canaa.FN.BusinessComponents.Financas.Buscar.Gastos;
 using Canaa.FN.BusinessComponents.Midia.Audio;
 using Canaa.FN.BusinessComponents.Midia.Video.CriarVideos;
@@ -34,6 +35,7 @@ namespace Canaa.Ninject
             kernel.Bind<IYoutubeComponent>().To<YoutubeComponent>();
             kernel.Bind<IControleTarefas>().To<ControleTarefas>();
             kernel.Bind<IGerarAudioComTts>().To<GerarAudioComTts>();
+            kernel.Bind<IEnviodeEmailsCorporativos>().To<EnviodeEmailsCorporativos>();
 
             //Configuração
             kernel.Bind<IConfiguration>().ToMethod(ctx =>

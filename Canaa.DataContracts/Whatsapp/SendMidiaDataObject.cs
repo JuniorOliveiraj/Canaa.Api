@@ -5,6 +5,8 @@
         public string number { get; set; }
         public OptionsDataObjec options { get; set; }
         public MediaMessage mediaMessage { get; set; }
+        public string instancia { get; set; }
+
     }
 
     public class MediaMessage
