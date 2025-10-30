@@ -1,1 +1,1 @@
-﻿dotnet ef dbcontext scaffold "server=gondola.proxy.rlwy.net;port=58135;database=CANAA_DEV;uid=root;pwd=fNAlqnyGCYzGHSYCcpbhSDpVypFHwhIl" Pomelo.EntityFrameworkCore.MySql --output-dir TempModels --no-onconfiguring --no-pluralize --data-annotations
+﻿dotnet ef dbcontext scaffold "server=gondola.proxy.rlwy.net;port=58135;database=CANAA_DEV;uid=root;pwd=fasdadaIl" Pomelo.EntityFrameworkCore.MySql --output-dir TempModels --no-onconfiguring --no-pluralize --data-annotations
