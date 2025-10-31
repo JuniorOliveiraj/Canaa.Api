@@ -3,7 +3,7 @@
 #criar todos os models na pasta temporaria
 
 dotnet ef dbcontext scaffold `
-"server=gondola.proxy.rlwy.net;port=58135;database=CANAA_DEV;uid=root;pwd=fNAlqnyGCYzGHSYCcpbhSDpVypFHwhIl" `
+"server=gondola.proxy.rlwy.net;port=58135;database=CANAA_DEV;uid=root;pwd=" `
 Pomelo.EntityFrameworkCore.MySql `
 --output-dir TempModels `
 --no-onconfiguring `

@@ -3,6 +3,6 @@ namespace Canaa.FN.BusinessComponents.Email
 {
     public interface IEnviodeEmailsCorporativos
     {
-        ResponseDataContrac EnvioDeEmailEmMassaCorporativos();
+        Task<ResponseDataContrac> EnvioDeEmailEmMassaCorporativos(string guid, long idUsuario);
     }
 }

@@ -54,4 +54,10 @@ public partial class ContatosEmail
     [Column("imagem")]
     [StringLength(255)]
     public string? Imagem { get; set; }
+
+    [Column("statusEmailPrincipal")]
+    public bool? StatusEmailPrincipal { get; set; }
+
+    [Column("statusEmailComercial")]
+    public bool? StatusEmailComercial { get; set; }
 }

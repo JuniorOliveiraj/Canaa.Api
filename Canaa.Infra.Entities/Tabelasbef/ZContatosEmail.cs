@@ -41,4 +41,14 @@ namespace Canaa.Infra.Entities.Tabelasbef
             repo.UpdateAsync(usuario).GetAwaiter().GetResult();
         }
     }
+    public enum ZContatosEmailStatusEmailComercial
+    {
+        Invalido,
+        Inativo,
+    }
+    public enum ZContatosEmailStatusEmailPrincipal
+    {
+        Invalido,
+        Inativo,
+    }
 }

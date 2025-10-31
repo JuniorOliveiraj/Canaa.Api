@@ -9,6 +9,7 @@ using Canaa.Infra.Entities.Utils;
 using Canaa.Infra.ExternalServices.Email;
 using Canaa.Infra.ExternalServices.Utils;
 using Microsoft.EntityFrameworkCore;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,38 +23,66 @@ namespace Canaa.FN.BusinessComponents.Email
     {
         private string _guid;
 
-
-        public ResponseDataContrac EnvioDeEmailEmMassaCorporativos()
+        public async Task<ResponseDataContrac> EnvioDeEmailEmMassaCorporativos(string guid, long idUsuario)
         {
-            _guid = Guid.NewGuid().ToString();
-            ProgressService.InsertNewTask(_guid, "Email_Corporativo");
-            ProgressService.UpdateTaskStatus(_guid, "Iniciando");
+            _guid = guid;
 
-            var listaDeEmails = BuscarListaDeEmailsAsync();
-            if (listaDeEmails.Count <= 0)
-                return MontarResponse(false, "Iniciando envio de emails corporativos em massa.");
+            try
+            {
+                ProgressService.InsertNewTask(_guid, "Email_Corporativo");
+                ProgressService.UpdateTaskStatus(_guid, "Iniciando envio de emails...");
 
-            if (!VerificarRolesDoUsuario())
-                return MontarResponse(false, "Usuário não possui permissão para executar esta ação.");
+                var listaDeEmails = BuscarListaDeEmailsAsync();
+                if (listaDeEmails == null || listaDeEmails.Count <= 0)
+                {
 
-            var envioTask = EnviarEmailParaListaDeEmails(listaDeEmails);
-            var mensagemFinal = @$"Envio de email Concluido Total de Emails enviados: ${envioTask.Result.TotalSucesso} total com falhas $${envioTask.Result.TotalErros}";
-            return MontarResponse(true, mensagemFinal);
+                    ProgressService.UpdateTaskError(string.Empty, "Nenhum email encontrado para envio.");
+
+                    return MontarResponse(false, "Nenhum email encontrado para envio.", "");
+                }
+
+                if (!VerificarRolesDoUsuario(idUsuario))
+                {
+                    ProgressService.UpdateTaskError(_guid, "Usuário sem permissão para envio.");
+                    return MontarResponse(false, "Usuário não possui permissão para executar esta ação.");
+                }
+
+                var resultado = await EnviarEmailParaListaDeEmails(listaDeEmails);
+
+                var mensagemFinal = @$"Envio de emails concluído. Total de enviados: {resultado.TotalSucesso}, falhas: {resultado.TotalErros}";
+                ProgressService.UpdateTaskStatus(_guid, mensagemFinal);
+                return MontarResponse(true, mensagemFinal);
+            }
+            catch (Exception ex)
+            {
+                return MontarResponse(false, "Erro ao iniciar o processo de envio de emails.", ex.Message);
+            }
+
         }
 
-        private ResponseDataContrac MontarResponse(bool sucesso, string mensagem)
+        private ResponseDataContrac MontarResponse(bool sucesso, string mensagem, string erros = "")
         {
-            ResponseDataContrac response = new ResponseDataContrac();
-            response.status = sucesso ? "Concluído" : "Erros";
-            response.success = sucesso;
-            response.message = mensagem;
+            if (!sucesso)
+                ProgressService.UpdateTaskError(_guid, "Usuário sem permissão para envio.");
+
+
+            ProgressService.SetConcluido(_guid);
+
+            var response = new ResponseDataContrac
+            {
+                success = sucesso,
+                message = mensagem,
+                data = _guid,
+                error = erros,
+                status = sucesso ? "Concluído" : "Erros"
+            };
+            ProgressService.SetConcluido(_guid);
             return response;
         }
 
-        private bool VerificarRolesDoUsuario()
+        private bool VerificarRolesDoUsuario(long idUsuario)
         {
-            int usuarioId = CanaaContext.GetUserId();
-            var usuario = ZUsuarios.GetFirstOrDefault(new Criteria("ID", usuarioId));
+             var usuario = ZUsuarios.GetFirstOrDefault(new Criteria("ID", idUsuario));
             if (usuario != null)
             {
                 var roles = usuario.PAPEL;
@@ -68,7 +97,7 @@ namespace Canaa.FN.BusinessComponents.Email
             var successCount = 0;
 
             // Parâmetros de controle
-            const int tamanhoLote = 2;
+            const int tamanhoLote = 10;
             int atrasoEntreLotesMs = 10000;
             int atrasoMinimoMs = 500;
             int atrasoMaximoMs = 1500;
@@ -76,17 +105,14 @@ namespace Canaa.FN.BusinessComponents.Email
 
             var random = new Random();
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 50; i++)
             {
-                int emailsProcessados = i + 1;
-                var email = CriarEmailRequest(listaDeEmails[i], emailsProcessados);
-                // Por esta linha:
-                var resultadoDoEnvio = await EmailService.SendEmailAsync(email);
+                var email = CriarEmailRequest(listaDeEmails[i], i + 1);
+                await Task.Delay(3000);// var resultadoDoEnvio = await EmailService.SendEmailAsync(email);
 
-
-                results.Add(resultadoDoEnvio);
-
-                if (await VerificarStatusDoEnvio(resultadoDoEnvio))
+                //results.Add(resultadoDoEnvio);
+                //await VerificarStatusDoEnvio(resultadoDoEnvio)
+                if (true)
                 {
                     successCount++;
                     atualizarSituacaoEmail(true, listaDeEmails[i].Id);
@@ -96,6 +122,10 @@ namespace Canaa.FN.BusinessComponents.Email
                     failedCount++;
                     atualizarSituacaoEmail(false, listaDeEmails[i].Id);
                 }
+
+                 double progresso = ((double)(i + 1) / listaDeEmails.Count) * 100;
+                ProgressService.UpdateTaskProgress(_guid, progresso);
+
                 await Task.Delay(random.Next(atrasoMinimoMs, atrasoMaximoMs));
 
                 if ((i + 1) % tamanhoLote == 0 && i + 1 < listaDeEmails.Count)
@@ -104,6 +134,7 @@ namespace Canaa.FN.BusinessComponents.Email
                     await Task.Delay(atrasoEntreLotesMs);
                 }
             }
+
             ProgressService.UpdateTaskStatus(_guid, "Concluído");
 
             return new StatusEnvioEmail
@@ -122,13 +153,16 @@ namespace Canaa.FN.BusinessComponents.Email
             var contato = ZContatosEmail.GetForEdit(criteria);
             if (statusEnvio)
             {
-                contato
+                contato.StatusEmailComercial = true;
+                ZContatosEmail.Save(contato);
+
                 Console.WriteLine($"Email para {contato.EmailPrincipal} enviado com sucesso.");
                 Console.WriteLine("Email enviado com sucesso.");
             }
             else
             {
-
+                contato.StatusEmailComercial = false;
+                ZContatosEmail.Save(contato);
             }
 
         }
@@ -138,8 +172,8 @@ namespace Canaa.FN.BusinessComponents.Email
             if (resultadoDoEnvio == null || string.IsNullOrEmpty(resultadoDoEnvio.EmailId))
                 return false;
 
-            // Aguarda 2 segundos antes de consultar o status
-            await Task.Delay(2000);
+            // Aguarda 3 segundos antes de consultar o status
+            await Task.Delay(3000);
 
             var dadosEnvio = await EmailService.GetEmailStatusAsync(resultadoDoEnvio.EmailId);
 
@@ -167,12 +201,7 @@ namespace Canaa.FN.BusinessComponents.Email
             {
                 To = new List<string> { email },
                 Subject = "Assunto do Email Corporativo",
-                HtmlBody = $@"
-                    <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>
-                        <h1 style='color: #2563eb;'>Olá {contato.NomeEmpresa}!</h1>
-                        <p>Este é um email corporativo enviado em massa.</p>
-                        <p>Atenciosamente,<br><strong>Equipe Corporativa</strong></p>
-                    </div>",
+                HtmlBody = EmailPadrao(contato.NomeEmpresa),
                 Tags = new Dictionary<string, string> { { "type", "corporate_mass_email" } }
             };
             return request;
@@ -201,6 +230,83 @@ namespace Canaa.FN.BusinessComponents.Email
                 return new List<ContatosEmail>();
 
             }
+        }
+
+
+        private string EmailPadrao(string nomeEmpresa)
+        {
+            return $@"<!DOCTYPE html>
+                            <html lang=""pt-BR"">
+                            <head>
+                            <meta charset=""UTF-8"">
+                            <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+                            <title>Email Candidatura</title>
+                            <style>
+                              body {{
+                                font-family: Arial, sans-serif;
+                                color: #333333;
+                                line-height: 1.5;
+                                background-color: #f9f9f9;
+                                margin: 0;
+                                padding: 20px;
+                              }}
+                              .container {{
+                                max-width: 600px;
+                                margin: auto;
+                                background-color: #ffffff;
+                                padding: 30px;
+                                border-radius: 8px;
+                                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                              }}
+                              h2 {{
+                                color: #0073e6;
+                              }}
+                              a {{
+                                color: #0073e6;
+                                text-decoration: none;
+                              }}
+                              a:hover {{
+                                text-decoration: underline;
+                              }}
+                              .footer {{
+                                margin-top: 20px;
+                                font-size: 0.9em;
+                                color: #777777;
+                              }}
+                            </style>
+                            </head>
+                            <body>
+                              <div class=""container"">
+                                <h2>Olá {nomeEmpresa},</h2>
+                                <p>Meu nome é <strong>Júnior Oliveira</strong> e sou desenvolvedor web full-stack com experiência em <strong>C#, .NET e React</strong>, atuando em projetos que vão desde o levantamento de requisitos até a entrega de soluções escaláveis e com excelente experiência para o usuário. Tenho também uma sólida base em design, permitindo criar interfaces intuitivas e eficazes.</p>
+    
+                                <p>Estou interessado em contribuir com minha experiência e habilidades para o crescimento da sua empresa, desenvolvendo soluções inovadoras e de alto impacto.</p>
+    
+                                <p><strong>Meus links profissionais:</strong><br>
+                                  - <strong>Site pessoal:</strong> <a href=""https://www.juniorbelem.com"" target=""_blank"">juniorbelem.com</a><br>
+                                  - <strong>LinkedIn:</strong> <a href=""https://www.linkedin.com/in/junior-oliveira-ba22381a3/"" target=""_blank"">linkedin.com/in/junioroliveiraj</a><br>
+                                  - <strong>GitHub:</strong> <a href=""https://github.com/JuniorOliveiraj"" target=""_blank"">github.com/JuniorOliveiraj</a><br>
+      
+                                  - <strong>Curriculo:</strong> <a href=""https://drive.google.com/file/d/1D6_LTKU4LImXm_H4ER6jlv2FrFTMY9Om/view?usp=sharing"" target=""_blank"">drive.google.com</a><br>
+                                </p>
+    
+                                <p>Anexo, envio meu currículo completo para sua análise.</p>
+    
+                                <p>Fico à disposição para uma conversa, caso queiram conhecer melhor meu trabalho e como posso contribuir para a equipe.</p>
+    
+                                <p>Agradeço desde já pelo tempo e atenção.</p>
+    
+                                <p>Atenciosamente,<br>
+                                <strong>Júnior Oliveira</strong><br>
+                                (49) 99813-9167 | junioroliveira.belem@gmail.com</p>
+    
+                                <div class=""footer"">
+                                  Este é um e-mail automático enviado por Júnior Oliveira. Todos os links são confiáveis e direcionam para meus perfis profissionais.
+                                </div>
+                              </div>
+                            </body>
+                            </html>
+";
         }
     }
     internal class StatusEnvioEmail
