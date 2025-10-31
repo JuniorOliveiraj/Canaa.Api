@@ -17,12 +17,12 @@ Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
- builder.WebHost.ConfigureKestrel(serverOptions =>
+builder.WebHost.ConfigureKestrel(serverOptions =>
 {
-    serverOptions.Limits.MinRequestBodyDataRate = new MinDataRate(
-        bytesPerSecond: 100,
-        gracePeriod: TimeSpan.FromSeconds(10)
-    );
+   serverOptions.Limits.MinRequestBodyDataRate = new MinDataRate(
+       bytesPerSecond: 100,
+       gracePeriod: TimeSpan.FromSeconds(10)
+   );
 });
 
 // Carrega variáveis de ambiente
@@ -87,11 +87,10 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseRouting();
 
