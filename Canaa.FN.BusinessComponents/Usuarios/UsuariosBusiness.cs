@@ -127,13 +127,13 @@ namespace Canaa.FN.BusinessComponents.Usuarios
                 {
                     NomeEmpresa = nomeEmpresa,
                     SiteLink = siteLink,
-                    Imagem = "https://www.seprosc.com.br/"+imagem,
+                    Imagem = imagem,
                     Dominio = dominio,
                     EmailPrincipal = emailRh,
                     EmailComercial = emailRh.Replace("rh@", "contato@"),
                     Observacoes = "Empresa associada de tecnologia.",
                     Categoria = Truncar(item.GetPropertyOrDefault("categoria") ?? "Tecnologia", 100),
-                    Cidade = Truncar(item.GetPropertyOrDefault("cidade") ?? "Blumenal", 100),
+                    Cidade = Truncar(item.GetPropertyOrDefault("cidade") ?? "São Paulo", 100),
                     TipoContato = "Empresa Associada",
                     // Id não definido, banco gera automaticamente
                 };

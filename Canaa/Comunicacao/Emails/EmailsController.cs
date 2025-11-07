@@ -22,27 +22,26 @@ namespace Canaa.Comunicacao.Emails
             var guid = Guid.NewGuid().ToString();
             var componente = BusinessComponent.CreateInstance<IEnviodeEmailsCorporativos>();
             int usuarioId = CanaaContext.GetUserId();
+            string mensagem = " ";
 
-            // Dispara a tarefa em background, sem bloquear a resposta HTTP
             _ = Task.Run(async () =>
             {
                 try
                 {
-                    await componente.EnvioDeEmailEmMassaCorporativos(guid, usuarioId);
+                    mensagem = "Nao ta funcionando so ADM pode enviar";
+                    //await componente.EnvioDeEmailEmMassaCorporativos(guid, usuarioId);
                 }
                 catch (Exception ex)
                 {
-                    // Registre a exceção (log, etc.), mas não quebre o retorno ao cliente
-                    Console.WriteLine($"Erro no envio de emails: {ex.Message}");
+                    mensagem = ($"Erro no envio de emails: {ex.Message}");
                 }
             });
 
-            // Retorna imediatamente ao cliente
             var response = new
             {
                 guid,
                 data = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
-                message = "Envio de emails iniciado com sucesso."
+                message = mensagem
             };
 
             return Ok(response);
