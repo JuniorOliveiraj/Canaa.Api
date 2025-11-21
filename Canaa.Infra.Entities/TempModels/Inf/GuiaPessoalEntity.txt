@@ -1,6 +1,7 @@
 ﻿
 
-#criar todos os models na pasta temporaria
+#criar todos os models na pasta temporaria caso de erro dotnet tool restore
+
 
 dotnet ef dbcontext scaffold `
 "server=gondola.proxy.rlwy.net;port=58135;database=CANAA_DEV;uid=root;pwd=" `

@@ -15,5 +15,12 @@ namespace Canaa.Infra.Entities.BefDb
         Task<T?> GetForEditAsync(params Criteria[] criterias);
         Task UpdateAsync(T entity);
 
+        Task AddAsync(T entity);
+
+        Task DeleteManyAsync(params Criteria[] criterias);
+
+        Task DeleteAllAsync();
+
+
     }
 }

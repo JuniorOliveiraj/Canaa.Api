@@ -8,6 +8,7 @@ using Canaa.FN.BusinessComponents.Midia.Video.CriarVideos;
 using Canaa.FN.BusinessComponents.Midia.Video.Youtube;
 using Canaa.FN.BusinessComponents.Response;
 using Canaa.FN.BusinessComponents.Usuarios;
+using Canaa.FN.BusinessComponents.Usuarios.sorteios;
 using Ninject;
 
 
@@ -29,6 +30,7 @@ namespace Canaa.Ninject
             kernel.Bind<ITotalGastos>().To<TotalGastos>();
             kernel.Bind<IUsuarioLogadoMetodo>().To<UsuarioLogadoMetodo>();
             kernel.Bind<IAdicionarJsonGastosMercadoPago>().To<AdicionarJsonGastosMercadoPago>();
+            kernel.Bind<ISorteioBusiness>().To<SorteioBusiness>();
 
             //WF
             kernel.Bind<IVideosVertical>().To<VideosVertical>();

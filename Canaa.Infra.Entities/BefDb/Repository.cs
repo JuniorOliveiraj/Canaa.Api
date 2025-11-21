@@ -80,6 +80,11 @@ namespace Canaa.Infra.Entities.BefDb
 
             return query;
         }
+        public async Task DeleteManyAsync(params Criteria[] criterias)
+        {
+            IQueryable<T> query = ApplyCriterias(_ctx.Set<T>(), criterias);
+            await query.ExecuteDeleteAsync();
+        }
 
         private static Expression BuildStringMethod(MemberExpression prop, ConstantExpression constant, string methodName)
         {
@@ -88,5 +93,11 @@ namespace Canaa.Infra.Entities.BefDb
 
             return Expression.Call(prop, typeof(string).GetMethod(methodName, new[] { typeof(string) })!, constant);
         }
+
+        public async Task DeleteAllAsync()
+        {
+            await _ctx.Set<T>().ExecuteDeleteAsync();
+        }
+
     }
 }

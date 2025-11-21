@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Canaa.Infra.Entities.Entities;
 using Canaa.Infra.Entities.Entities;
-using Canaa.Infra.Entities.Entities;
+using Canaa.TempModels;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
+using System;
+using System.Collections.Generic;
 
 namespace Canaa.Infra.Entities.Context;
 
@@ -34,9 +35,11 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<compras_cartao> compras_cartaos { get; set; }
     public virtual DbSet<ContatosEmail> ContatosEmail { get; set; }
+    public virtual DbSet<Draws> Draws { get; set; }
+    public virtual DbSet<Participants> Participants { get; set; }
+    public virtual DbSet<Sorteios> Sorteios { get; set; }
 
-    public virtual DbSet<draw> draws { get; set; }
-
+ 
     public virtual DbSet<favorite_news> favorite_news { get; set; }
 
     public virtual DbSet<gastos_mensais_notion> gastos_mensais_notions { get; set; }
@@ -55,7 +58,6 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<news> news { get; set; }
 
-    public virtual DbSet<participant> participants { get; set; }
 
     public virtual DbSet<participante> participantes { get; set; }
 
@@ -67,8 +69,7 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<sis_usuario> sis_usuarios { get; set; }
 
-    public virtual DbSet<sorteio> sorteios { get; set; }
-
+ 
     public virtual DbSet<tag> tags { get; set; }
 
     public virtual DbSet<thema_dark> thema_darks { get; set; }
@@ -214,20 +215,6 @@ public partial class ApplicationDbContext : DbContext
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp");
         });
-
-        modelBuilder.Entity<draw>(entity =>
-        {
-            entity.HasKey(e => e.id).HasName("PRIMARY");
-
-            entity.HasIndex(e => e.participant_id, "participant_id").IsUnique();
-
-            entity.Property(e => e.drawn_name).HasMaxLength(255);
-
-            entity.HasOne(d => d.participant).WithOne(p => p.draw)
-                .HasForeignKey<draw>(d => d.participant_id)
-                .HasConstraintName("draws_ibfk_1");
-        });
-
         modelBuilder.Entity<favorite_news>(entity =>
         {
             entity.HasKey(e => e.id).HasName("PRIMARY");
@@ -353,20 +340,6 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.url).HasMaxLength(255);
         });
 
-        modelBuilder.Entity<participant>(entity =>
-        {
-            entity.HasKey(e => e.id).HasName("PRIMARY");
-
-            entity.HasIndex(e => e.name, "name").IsUnique();
-        });
-
-        modelBuilder.Entity<participante>(entity =>
-        {
-            entity.HasKey(e => e.id).HasName("PRIMARY");
-
-            entity.Property(e => e.nome).HasMaxLength(255);
-        });
-
         modelBuilder.Entity<produtosagro>(entity =>
         {
             entity.HasKey(e => e.id).HasName("PRIMARY");
@@ -428,19 +401,7 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.ds_telefone).HasMaxLength(45);
         });
 
-        modelBuilder.Entity<sorteio>(entity =>
-        {
-            entity.HasKey(e => e.id).HasName("PRIMARY");
 
-            entity.HasIndex(e => e.id_sorteador, "id_sorteador");
-
-            entity.Property(e => e.nome_sorteado).HasMaxLength(255);
-
-            entity.HasOne(d => d.id_sorteadorNavigation).WithMany(p => p.sorteios)
-                .HasForeignKey(d => d.id_sorteador)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("sorteios_ibfk_1");
-        });
 
         modelBuilder.Entity<tag>(entity =>
         {
