@@ -23,6 +23,11 @@ namespace Canaa.FN.BusinessComponents.Usuarios.sorteios
             return participantes;
         }
 
+        public void ApagarSorteios()
+        {
+            SorteiosEntity.DeleteAll();
+        }
+
         public ResponseDataContrac DeletarParticipante(int idParticipante)
         {
             try

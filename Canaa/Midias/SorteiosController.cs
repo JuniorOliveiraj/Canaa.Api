@@ -59,7 +59,14 @@ namespace Canaa.Midias
             var response = tarefasComponent.GerarNovoSorteio();
             return Ok(response);
         }
-
+        [HttpDelete]
+        [Route("apagar")]
+        public IActionResult ApagarSorteios()
+        {
+            var tarefasComponent = BusinessComponent.CreateInstance<ISorteioBusiness>();
+            tarefasComponent.ApagarSorteios();
+            return Ok(true);
+        }
 
 
 

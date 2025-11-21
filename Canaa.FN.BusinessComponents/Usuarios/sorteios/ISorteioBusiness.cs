@@ -16,5 +16,6 @@ namespace Canaa.FN.BusinessComponents.Usuarios.sorteios
         Task<ResponseDataContrac> GerarNovoSorteio();
         ResponseDataContrac DeletarParticipante(int idParticipante);
         void AterarStatusSorteios();
+        void ApagarSorteios();
     }
 }
