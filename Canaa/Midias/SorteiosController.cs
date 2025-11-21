@@ -42,6 +42,15 @@ namespace Canaa.Midias
             var response = tarefasComponent.DeletarParticipante(participants);
             return Ok(response);
         }
+
+        [HttpPost]
+        [Route("alterar-status")]
+        public IActionResult Alterarsorteios()
+        {
+            var tarefasComponent = BusinessComponent.CreateInstance<ISorteioBusiness>();
+            tarefasComponent.AterarStatusSorteios();
+            return Ok(true);
+        }
         [HttpPost]
         [Route("gerar")]
         public IActionResult GerarSorteios()

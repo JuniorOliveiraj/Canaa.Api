@@ -159,7 +159,15 @@ namespace Canaa.FN.BusinessComponents.Usuarios.sorteios
 
             return result;
         }
-
+        public void AterarStatusSorteios()
+        {
+            var sorteios = SorteiosEntity.GetAll();
+            foreach (var item in sorteios)
+            {
+                item.Viewed = null;
+                SorteiosEntity.Save(item);
+            }
+        }
 
         private async Task  EnviarLinkDoSorteioAsync(string phone, string link)
         {
